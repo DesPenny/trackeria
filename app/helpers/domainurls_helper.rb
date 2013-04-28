@@ -1,0 +1,2 @@
+module DomainurlsHelper
+end

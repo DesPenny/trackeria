@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @domainurl.user_id %>
+</p>
+
+<p>
+  <b>Domainurl:</b>
+  <%= @domainurl.domainurl %>
+</p>
+
+<p>
+  <b>Keyword:</b>
+  <%= @domainurl.keyword %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @domainurl.category %>
+</p>
+
+<p>
+  <b>Google rank:</b>
+  <%= @domainurl.google_rank %>
+</p>
+
+<p>
+  <b>Bing rank:</b>
+  <%= @domainurl.bing_rank %>
+</p>
+
+<p>
+  <b>Yahoo rank:</b>
+  <%= @domainurl.yahoo_rank %>
+</p>
+
+<p>
+  <b>Alexa rank:</b>
+  <%= @domainurl.alexa_rank %>
+</p>
+
+<p>
+  <b>Page rank:</b>
+  <%= @domainurl.page_rank %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @domainurl.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_domainurl_path(@domainurl) %> |
+<%= link_to 'Back', domainurls_path %>
+
+<% @domainurls.each do |domainurl| %>
+  <tr>
+    <td><%= domainurl.user_id %></td>
+    <td><%= domainurl.domainurl %></td>
+    <td><%= domainurl.keyword %></td>
+    <td><%= domainurl.category %></td>
+    <td><%= domainurl.google_rank %></td>
+    <td><%= domainurl.bing_rank %></td>
+    <td><%= domainurl.yahoo_rank %></td>
+    <td><%= domainurl.alexa_rank %></td>
+    <td><%= domainurl.page_rank %></td>
+    <td><%= domainurl.user %></td>
+    <td><%= link_to 'Show', domainurl %></td>
+    <td><%= link_to 'Edit', edit_domainurl_path(domainurl) %></td>
+    <td><%= link_to 'Destroy', domainurl, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

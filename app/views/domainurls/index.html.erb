@@ -1,0 +1,234 @@
+<div class="contain-to-grid sticky">
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="/">Rank Tracker </a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">   
+         <% if user_signed_in? %>
+    <li class="active"><%= link_to (@domaincount), edit_user_registration_path %></li>
+      <li class="has-form"><%= link_to "Current Plan: FREE", edit_user_registration_path, :class=>"button small round" %></li>
+        <% end %>
+
+    </ul>
+    <ul class="right">
+        <% if user_signed_in? %>
+        <li class="divider"></li>
+        <li class="active"><%= link_to current_user.email, edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li class="active"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <li class="divider"></li>
+     
+        
+        <% else %>
+        <li class="active"><%= link_to "Sign up", new_user_registration_path %></li>
+        <li class="divider"></li>
+        <li class="active"><%= link_to "Login", new_user_session_path %></li>
+    <% end %>
+    </ul>
+  </section>
+</nav>
+</div>
+
+<p />
+<% if user_signed_in? %>
+  <div class="row">
+  <div class="small-3 columns">
+    <%= form_tag domainurls_path, :method => 'get', :controller=>'domainurls' do %>
+    <%= text_field_tag :search_text, params[:search_text] %>
+  </div>
+  <div class="small-9 columns">
+    <%= submit_tag "Search" %>
+    <% end %>
+  </div>
+</div> 
+
+<div class="row">
+    <div class="small-12 small-centered columns">
+<table id="domainurl" class="display">
+    <thead>
+        <tr>
+            <th><%= link_to sortable "domainurl", "URL" %></th>
+            <th><%= link_to sortable "keyword"  %></th>
+            <th><%= link_to sortable "category", "Category" %></th>
+            <th><%= link_to sortable "google_rank", "Google Rank" %></th>
+            <th><%= link_to sortable "bing_rank", "Bing Rank" %></th>
+            <th><%= link_to sortable "yahoo_rank", "Yahoo Rank" %></th>
+            <th><%= link_to sortable "alexa_rank", "Alexa Rank" %></th>
+            <th><%= link_to sortable "updated_at", "Last Updated" %></th>
+        </tr>
+    </thead>    
+    <tbody>
+        <% @domainurls.each do |domainurl| %>
+        <tr>
+        <td><%= domainurl.domainurl rescue "N/A" %></td>
+        <td><%= best_in_place @domainurl, :keyword %></td>
+        <td><%= best_in_place @domainurl, :category %></td>
+        <td><%= domainurl.google_rank rescue "N/A" %></td>
+        <td><%= domainurl.bing_rank rescue "N/A" %></td>
+        <td><%= domainurl.yahoo_rank rescue "N/A" %></td>
+        <td><%= domainurl.alexa_rank rescue "N/A" %></td>
+        <td><% if domainurl.google_rank==nil %>
+            updating soon
+            <% else %>
+            <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %></td>
+            <% end %>
+        <td>
+            <ul class="button-group radius">
+                <%= link_to "Edit", edit_domainurl_path(@domainurls),
+                                                :class=>"tiny button success"%>
+                <%= link_to "Delete", domainurl,    :method=>:delete,
+                                                :confirm=> "Permanently delete this URL-Keyword entry: #{domainurl.domainurl}, #{domainurl.keyword}?",
+                                                :class=>"tiny button alert"%>
+            </ul>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>
+</div>
+<p />
+<div class="row">
+    <div class="small-12 small-centered columns">
+<div class="row">
+         <%= simple_form_for @domainurl do |f| %>
+            <%= f.error_notification %>
+            <%= f.hidden_field :user_id, :value=>current_user.id %>
+                <div class="small-4 columns">
+                    <%= f.input :domainurl, label: 'URL' %>
+                </div>
+                <div class="small-3 columns">
+                    <%= f.input :keyword %>
+                </div>
+                <div class="small-3 columns">
+                
+                <%= f.input :category%>
+                </div>
+                <div class="small-2 columns">
+                
+                </div>
+</div>
+<div class="row">
+    <div class="small-2 columns">
+        <%= f.button :submit, 'Add Url & Keyword', :class=>"button small success radius inline" %>
+    </div>
+    <div class="small-2 columns">
+        <%= f.error :base %>
+    </div>
+</div>
+        <% end %>          
+
+    </div>
+</div>
+
+<% else %>
+<div class="row">
+  <div class="small-6 columns">
+    <div class="panel radius">
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.""</div></div>
+  
+  <div class="small-6 columns">
+    <div class="panel callout radius">
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</div></div>
+
+</div>
+<div class="row">
+    <div class="small-3 columns">
+<ul class="pricing-table">
+    <li class="title">Free</li>
+    <li class="price">Free Forever</li>
+    <li class="bullet-item">10 URL/Keywords</li>
+    <li class="bullet-item">Daily Google Updates</li>
+    <li class="description">Daily Bing Updates</li>
+    <li class="description">Daily Yahoo Updates</li>
+    <li class="description">Alexa Rank</li>
+    <li class="description"></li>
+    <li class="description"></li>
+    
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    <li class="title">Lite</li>
+    <li class="price">$9.97/ month</li>
+    <li class="bullet-item">75 URL/Keywords</li>
+    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="description">Daily Bing Updates</li>
+    <li class="description">Daily Yahoo Updates</li>
+    <li class="description">Alexa Rank</li>
+    <li class="description">Saved Historical Data</li>
+    <li class="description">Downloadable Reports</li>
+    
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    <li class="title">Standard</li>
+    <li class="price">$18.97/ month</li>
+    <li class="bullet-item">150 URL/Keywords</li>
+    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="description">Daily Bing Updates</li>
+    <li class="description">Daily Yahoo Updates</li>
+    <li class="description">Alexa Rank</li>
+    <li class="description">Saved Historical Data</li>
+    <li class="description">Downloadable Reports</li>
+    
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    <li class="title">Pro</li>
+    <li class="price">$36.97/ month</li>
+    <li class="bullet-item">300 URL/Keywords</li>
+    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="description">Daily Bing Updates</li>
+    <li class="description">Daily Yahoo Updates</li>
+    <li class="description">Alexa Rank</li>
+    <li class="description">Saved Historical Data</li>
+    <li class="description">Downloadable Reports</li>
+    
+</ul>
+</div>
+</div>
+
+
+<div class="row">
+    <div class="small-3 columns">
+<ul class="pricing-table">
+    
+    <li class="cta-button"><%= link_to "Sign up", new_user_registration_path, :class=>"button" %></li>
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    
+    <li class="cta-button"><%= link_to "Sign up", new_user_registration_path, :class=>"button" %></li>
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    
+    <li class="cta-button"><%= link_to "Sign up", new_user_registration_path, :class=>"button" %></li>
+</ul>
+</div>
+<div class="small-3 columns">
+<ul class="pricing-table">
+    
+    <li class="cta-button"><%= link_to "Sign up", new_user_registration_path, :class=>"button" %></li>
+</ul>
+</div>
+</div>
+
+<% end %>
+
+
+
