@@ -3,8 +3,8 @@ class DomainurlsController < ApplicationController
   # GET /domainurls.json
   helper_method :sort_column, :sort_direction
   def index
-    @domainurls = Domainurl.all
-
+    @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction)
+    @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @domainurls }
@@ -15,11 +15,12 @@ class DomainurlsController < ApplicationController
   # GET /domainurls/1.json
   def show
     @domainurl = Domainurl.find(params[:id])
+    redirect_to root_path
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @domainurl }
+    # end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @domainurl }
-    end
   end
 
   # GET /domainurls/new

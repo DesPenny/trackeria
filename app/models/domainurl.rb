@@ -22,11 +22,11 @@ class Domainurl < ActiveRecord::Base
 
   validates_presence_of :domainurl, :keyword
 
-  def self.search(query)
-  		if query
-    		where('domainurl LIKE ? OR keyword LIKE ? OR category LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+  def self.search(search)
+  		if search
+    		where('domainurl LIKE ? OR keyword LIKE ? OR category LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
   		else
-  			all
+  			scoped
   		end
 	end
 end
