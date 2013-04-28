@@ -3,8 +3,10 @@ class DomainurlsController < ApplicationController
   # GET /domainurls.json
   helper_method :sort_column, :sort_direction
   def index
-    @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction)
-    @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
+    if signed_in?
+      @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction)
+      @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @domainurls }
