@@ -4,8 +4,9 @@ class DomainurlsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
     if signed_in?
-      @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction)
+      @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => params[:page])
       @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
+      @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -83,6 +84,14 @@ class DomainurlsController < ApplicationController
       format.html { redirect_to domainurls_url }
       format.json { head :no_content }
     end
+  end
+
+  def domainupdate
+    @domainurl = Domainurl.find(params[:id])
+    Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_bing
+    Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_yahoo
+    Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_googleUS
+    PageRankr.ranks(:domainurl, :alexa_global)
   end
 
   private

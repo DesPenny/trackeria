@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-<div class="panel radius"> 
+<br /><br />
 <div class="row collapse">
    
             <%= simple_form_for(:domainurl) do |f| %>
@@ -12,9 +12,7 @@
                 <div class="small-2 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
                 <div class="small-2 columns"><%= f.input :category, label: false%></div>
-                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny success radius" %></div>
-                                   
-    </div>
+                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny radius" %></div>
 </div>
 
 
@@ -23,10 +21,9 @@
         <%= f.error :base %></div> 
     </div>
 <% end %> 
-
 <div class="row">
-    <div class="small-12 small-centered columns">
-<table id="domainurl" class="display">
+<div class="small-12 small-centered columns">
+<table>
     <thead>
         <tr>
             <th><%= link_to sortable "domainurl", "URL" %></th>
@@ -38,25 +35,23 @@
             <th><%= link_to sortable "alexa_rank", "Alexa Rank" %></th>
             <th><%= link_to sortable "updated_at", "Last Updated" %></th>
         </tr>
-    </thead>    
+    </thead>
     <tbody>
-
-        <% @domainurls.each do |domainurl| %>
+    <% @domainurls.find_all_by_user_id(current_user.id).each do |domainurl| %>   
         <tr>
-        <td><%= domainurl.domainurl rescue "N/A" %></td>
-        <td><%= domainurl.keyword rescue "N/A" %></td>
-        <td><%= domainurl.category rescue "N/A" %></td>
-        <td><%= domainurl.google_rank rescue "N/A" %></td>
-        <td><%= domainurl.bing_rank rescue "N/A" %></td>
-        <td><%= domainurl.yahoo_rank rescue "N/A" %></td>
-        <td><%= domainurl.alexa_rank rescue "N/A" %></td>
-        <td><% if domainurl.google_rank==nil %>
-            updating soon
-            <% else %>
-            <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %></td>
-            <% end %>
-        <td>
-            <ul class="button-group radius">
+            <td><%= domainurl.domainurl rescue "N/A" %></td>
+            <td><%= domainurl.keyword rescue "N/A" %></td>
+            <td><%= domainurl.category rescue "N/A" %></td>
+            <td><%= domainurl.google_rank rescue "N/A" %></td>
+            <td><%= domainurl.bing_rank rescue "N/A" %></td>
+            <td><%= domainurl.yahoo_rank rescue "N/A" %></td>
+            <td><%= domainurl.alexa_rank rescue "N/A" %></td>
+            <td><% if domainurl.google_rank==nil %>
+                updating soon
+                <% else %>
+                <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %>
+                <% end %></td>
+            <td><ul class="button-group radius">
                 <%= link_to "Edit", edit_domainurl_path(domainurl),
                                                 :class=>"tiny button secondary"%>
                 <%= link_to "Delete", domainurl,    :method=>:delete,
@@ -71,8 +66,13 @@
 </div>
 </div>
 <p />
-<div class="panel radius"> 
-<div class="row collapse">
+
+<div class="row">
+    <%= will_paginate @domainurls.find_all_by_user_id(current_user.id) %>
+</div>
+<% if @domaincount_for_page >= 30 %>
+    <div class="panel radius"> 
+        <div class="row collapse">
    
             <%= simple_form_for(:domainurl) do |f| %>
             <%= f.error_notification %>
@@ -83,10 +83,11 @@
                 <div class="small-2 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
                 <div class="small-2 columns"><%= f.input :category, label: false%></div>
-                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny success radius" %></div>
+                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny radius" %></div>
                                    
+        </div>
     </div>
-</div>
+            <% end %>
 <% end %>
 
 <% else %>

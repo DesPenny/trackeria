@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rankapp</title>
+  <title>WebTracker</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
   <ul class="title-area">
     <!-- Title Area -->
     <li class="name">
-      <h1><a href="/">Rank Tracker </a></h1>
+      <h1><a href="/">WebTracker (beta)</a></h1>
     </li>
     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -30,7 +30,7 @@
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
     <%= text_field_tag :search, params[:search] %></li>
-    <li class="has-form"><%= submit_tag "Search", :class=>"button radius" %></li>
+    <li class="has-form"><%= submit_tag "Search", :class=>"button secondary round" %></li>
     <% end %>
     <% end %>
     </ul>
