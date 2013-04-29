@@ -4,7 +4,7 @@ class DomainurlsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
     if signed_in?
-      @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => params[:page])
+      @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
       @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
     end

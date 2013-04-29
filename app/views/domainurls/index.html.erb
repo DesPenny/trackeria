@@ -1,26 +1,5 @@
 <% if user_signed_in? %>
 
-<br /><br />
-<div class="row collapse">
-   
-            <%= simple_form_for(:domainurl) do |f| %>
-            <%= f.error_notification %>
-            <%= f.hidden_field :user_id, :value=>current_user.id %>
-                <div class="small-1 columns"><span class="prefix">URL</span></div>
-                <div class="small-2 columns"><%= f.input :domainurl, label: false %></div>
-                <div class="small-1 columns"><span class="prefix">Keyword</span></div>
-                <div class="small-2 columns"><%= f.input :keyword, label: false %></div>
-                <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
-                <div class="small-2 columns"><%= f.input :category, label: false%></div>
-                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny radius" %></div>
-</div>
-
-
-<div class="row">
-    <div class="small-4 columns">
-        <%= f.error :base %></div> 
-    </div>
-<% end %> 
 <div class="row">
 <div class="small-12 small-centered columns">
 <table>
@@ -70,9 +49,8 @@
 <div class="row">
     <%= will_paginate @domainurls.find_all_by_user_id(current_user.id) %>
 </div>
-<% if @domaincount_for_page >= 30 %>
-    <div class="panel radius"> 
-        <div class="row collapse">
+
+<div class="row collapse">
    
             <%= simple_form_for(:domainurl) do |f| %>
             <%= f.error_notification %>
@@ -83,12 +61,14 @@
                 <div class="small-2 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
                 <div class="small-2 columns"><%= f.input :category, label: false%></div>
-                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button tiny radius" %></div>
-                                   
-        </div>
+                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div>
+</div>
+<div class="row">
+    <div class="small-4 columns">
+        <%= f.error :base %></div> 
     </div>
-            <% end %>
-<% end %>
+
+<% end %> 
 
 <% else %>
 <div class="row">
