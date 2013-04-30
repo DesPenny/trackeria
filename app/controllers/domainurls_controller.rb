@@ -85,18 +85,16 @@ class DomainurlsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  # <%= form_for(domainurl.alexa_rank=PageRankr.ranks("domainurl.domainurl", :alexa_global)) do |f| %>
-  #               <%= f.submit "Update", :class=>"tiny button" %>
-  #               <% end %>
-  # def domainupdate
-  #   redirect_to root_path
-  #   @domainurl = Domainurl.find(params[:id])
-  #   #Ranking.new(:keyword => domainurl.keyword, :url => domainurl.domainurl, :limit =>100).from_bing
-  #   #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_yahoo
-  #   #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_googleUS
-  #   @domainurl.alexa_rank=PageRankr.ranks(:domainurl, :alexa_global)
+  
+  def domainupdate
+    redirect_to root_path
+    @domainurl = Domainurl.find(params[:id])
+    #Ranking.new(:keyword => domainurl.keyword, :url => domainurl.domainurl, :limit =>100).from_bing
+    #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_yahoo
+    #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_googleUS
+    @domainurl.alexa_rank=PageRankr.ranks(:domainurl, :alexa_global)
 
-  # end
+  end
 
   private
 
