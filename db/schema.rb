@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428023922) do
+ActiveRecord::Schema.define(:version => 20130430025135) do
 
   create_table "domainurls", :force => true do |t|
     t.integer  "user_id"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20130428023922) do
     t.integer  "yahoo_rank"
     t.integer  "alexa_rank"
     t.integer  "page_rank"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "alexa_global"
   end
 
   add_index "domainurls", ["user_id"], :name => "index_domainurls_on_user_id"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130428023922) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
