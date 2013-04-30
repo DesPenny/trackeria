@@ -6,14 +6,14 @@
     <thead>
         <tr>
             
-            <th><%= link_to sortable "domainurl", "URL" %></th>
-            <th><%= link_to sortable "keyword"  %></th>
-            <th><%= link_to sortable "category", "Category" %></th>
-            <th><%= link_to sortable "google_rank", "Google" %></th>
-            <th><%= link_to sortable "bing_rank", "Bing" %></th>
-            <th><%= link_to sortable "yahoo_rank", "Yahoo" %></th>
-            <th><%= link_to sortable "alexa_rank", "Alexa" %></th>
-            <th><%= link_to sortable "updated_at", "Updated" %></th>
+            <th><center><%= link_to sortable "domainurl", "URL" %></center></th>
+            <th><center><%= link_to sortable "keyword"  %></center></th>
+            <th><center><%= link_to sortable "category", "Category" %></center></th>
+            <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
+            <th><center><%= link_to sortable "bing_rank", "Bing" %></center></th>
+            <th><center><%= link_to sortable "yahoo_rank", "Yahoo" %></center></th>
+            <th><center><%= link_to sortable "alexa_rank", "Alexa" %></center></th>
+            <th><center><%= link_to sortable "updated_at", "Updated" %></center></th>
             <th></th>
         </tr>
     </thead>
@@ -22,17 +22,17 @@
         <tr>
             
             <td><%= domainurl.domainurl rescue "N/A" %></td>
-            <td><%= domainurl.keyword rescue "N/A" %></td>
-            <td><%= domainurl.category rescue "N/A" %></td>
-            <td><%= domainurl.google_rank rescue "N/A" %></td>
-            <td><%= domainurl.bing_rank %></td>
-            <td><%= domainurl.yahoo_rank%></td>
-            <td><% domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)%><%= domainurl.alexa_global=domainurl.alexa_global[:alexa_global] %> </td>
-            <td><% if domainurl.google_rank==nil %>
+            <td><center><%= domainurl.keyword rescue "N/A" %></center></td>
+            <td><center><%= domainurl.category rescue "N/A" %></center></td>
+            <td><center><%= domainurl.google_rank rescue "N/A" %></center></td>
+            <td><center><%= domainurl.bing_rank %></center</td>
+            <td><center><%= domainurl.yahoo_rank%></center></td>
+            <td><center><% domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)%><%= domainurl.alexa_global=domainurl.alexa_global[:alexa_global] %> </center></td>
+            <td><center><% if domainurl.google_rank==nil %>
                 updating soon
                 <% else %>
                 <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %>
-                <% end %></td>
+                <% end %></center></td>
             <td width="110"><ul class="button-group radius">
                 <%= link_to "Edit", edit_domainurl_path(domainurl),
                                                 :class=>"tiny button secondary"%>
@@ -41,6 +41,7 @@
                                                 :class=>"tiny button alert"%>
             </ul>
             </td>
+
         </tr>
         <% end %>
     </tbody>
