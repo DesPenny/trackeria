@@ -27,7 +27,7 @@
             <td><%= domainurl.google_rank rescue "N/A" %></td>
             <td><%= domainurl.bing_rank %></td>
             <td><%= domainurl.yahoo_rank%></td>
-            <td><% domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)%><%= domainurl.alexa_global[:alexa_global] %> </td>
+            <td><% domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)%><%= domainurl.alexa_global=domainurl.alexa_global[:alexa_global] %> </td>
             <td><% if domainurl.google_rank==nil %>
                 updating soon
                 <% else %>
