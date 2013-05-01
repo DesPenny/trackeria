@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebTracker</title>
+  <title>Trackr</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
   <ul class="title-area">
     <!-- Title Area -->
     <li class="name">
-      <h1><a href="/">WebTracker (beta)</a></h1>
+      <h1><a href="/">Trackr</a></h1>
     </li>
     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -38,6 +38,10 @@
         <% if user_signed_in? %>
         <li class="active"><%= link_to "Help", edit_user_registration_path %></li>
         <li class="divider"></li>
+        <% if current_page?(domainurls_path)%>
+      <li class="active"><%= link_to (@domaincount), edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <% end %>
         <% if current_page?(root_path) %>
       <li class="active"><%= link_to (@domaincount), edit_user_registration_path %></li>
         <li class="divider"></li>

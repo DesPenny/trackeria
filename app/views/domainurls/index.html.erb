@@ -20,37 +20,39 @@
     <tbody>
     
     
-    
 
-    <% @domainurls.find_all_by_user_id(current_user.id).each do |domainurl| %>   
+    <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
         <tr>
             
-            <td><%= domainurl.domainurl rescue "N/A" %></td>
-            <td><center><%= domainurl.keyword rescue "N/A" %></center></td>
-            <td><center><%= domainurl.category rescue "N/A" %></center></td>
-            <td><center><% if domainurl.google_rank==nil %>100+
+            <td><%= f.domainurl rescue "N/A" %></td>
+            <td><center><%= f.keyword rescue "N/A" %></center></td>
+            <td><center><%= f.category rescue "N/A" %></center></td>
+            <td><center><% if f.google_rank==nil && f.created_at != f.updated_at %>N/A
                         <% else %>
-                        <%= domainurl.google_rank rescue "N/A" %>
+                        <%= f.google_rank rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><% if domainurl.bing_rank==nil %>100+
+            <td><center><% if f.bing_rank==nil && f.created_at != f.updated_at %>N/A
                         <% else %>
-                        <%= domainurl.bing_rank %>
+                        <%= f.bing_rank %>
                         <% end %></center</td>
-            <td><center><% if domainurl.yahoo_rank==nil %>100+
+            <td><center><% if f.yahoo_rank==nil && f.created_at != f.updated_at %>N/A
                         <% else %>
-                        <%= domainurl.yahoo_rank%>
+                        <%= f.yahoo_rank%>
                         <% end %></center></td>
-            <td><center><%= domainurl.alexa_global %> </center></td>
-            <td><center><% if domainurl.alexa_global==nil %>
+            <td><center><% if f.alexa_global==nil && f.created_at != f.updated_at %>N/A
+                        <% else %>
+                        <%= f.alexa_global %>
+                        <% end %></center></td>
+            <td><center><% if f.updated_at.min<f.created_at.min+1 %>
                 updating soon
                 <% else %>
-                <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %>
+                <%= time_ago_in_words(f.updated_at) rescue "N/A" %>
                 <% end %></center></td>
             <td><center><ul class="button-group radius">
-                <%= link_to "Edit", edit_domainurl_path(domainurl),
+                <%= link_to "Edit", edit_domainurl_path(f),
                                                 :class=>"tiny button secondary"%>
-                <%= link_to "Delete", domainurl,    :method=>:delete,
-                                                :confirm=> "Permanently delete this URL-Keyword entry: #{domainurl.domainurl}, #{domainurl.keyword}?",
+                <%= link_to "Delete", f,    :method=>:delete,
+                                                :confirm=> "Permanently delete #{f.domainurl} and #{f.keyword}?",
                                                 :class=>"tiny button alert"%>
             </ul>
             </center>
@@ -91,12 +93,13 @@
 
 <% end %> 
 
+<% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
 <div class="row">
     <center>
-<%= button_to "Refresh All", refresh_path(@domainurls), :method=>:put, :class=>"button radius" %></center>
+<%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></center>
     
 </div>
-
+<% end %>
 
 <% else %>
 <div class="row">
