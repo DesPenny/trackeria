@@ -2,7 +2,7 @@ Rankapp::Application.routes.draw do
 
   resources :domainurls
   match '/refresh', :to=>'domainurls#domainupdate'
-
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
   devise_for :users
 
   root :to => 'domainurls#index'

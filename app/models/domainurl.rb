@@ -31,5 +31,18 @@ class Domainurl < ActiveRecord::Base
   		end
 	end
 
-  
+  def Domainurl.domainupdatenow(uid)
+      Domainurl.find_all_by_user_id(uid).each do |f|
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahoo
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bing
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 11
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
+          f.save 
+        end
+      end
 end

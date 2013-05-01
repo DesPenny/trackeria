@@ -2,3 +2,9 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Rankapp::Application
+
+if Rails.env.production?
+  DelayedJobWeb.use Rack::Auth::Basic do |username, password|
+    username == 'admin' && password == '0001651'
+  end
+end

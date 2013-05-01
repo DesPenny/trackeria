@@ -1,13 +1,13 @@
 class DomainurlsController < ApplicationController
   # GET /domainurls
   # GET /domainurls.json
-  before_filter :authenticate_user!
+  
   helper_method :sort_column, :sort_direction
-
+  skip_before_filter :authenticate_user!, :only => [:index]
   def index
     if signed_in?
       @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
-      @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/50"
+      @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/100"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
       #@domainurl=Domainurl.find_all_by_user_id(current_user.id)
     end
@@ -51,7 +51,7 @@ class DomainurlsController < ApplicationController
   # POST /domainurls.json
   def create
     @domainurl = Domainurl.new(params[:domainurl])
-    if Domainurl.find_all_by_user_id(current_user.id).count<50
+    if Domainurl.find_all_by_user_id(current_user.id).count<100
       respond_to do |format|
         if @domainurl.save
           format.html { redirect_to @domainurl, notice: 'Domainurl was successfully created.' }
@@ -97,20 +97,10 @@ class DomainurlsController < ApplicationController
   end
   
   def domainupdate
-    
-    if Time.now.utc>(Domainurl.find_all_by_user_id(current_user.id).first.updated_at+3600)
-      Domainurl.find_all_by_user_id(current_user.id).each.delay do |f|
-         sleep 1
-         f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahoo
-         sleep 1
-         f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bing
-         sleep 1
-         f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
-         f.alexa_global=f.alexa_global[:alexa_global] 
-         sleep 8
-         f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
-         f.save 
-        end
+    @domainurl = Domainurl.find_all_by_user_id(current_user.id)
+    uid=current_user.id
+    if Time.now.utc>(Domainurl.find_all_by_user_id(current_user.id).first.updated_at+30)
+        Domainurl.delay.domainupdatenow(uid)
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 
@@ -120,8 +110,9 @@ class DomainurlsController < ApplicationController
   end
 
 
-  private
 
+  private
+    
 
     def sort_column
       Domainurl.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
