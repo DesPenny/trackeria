@@ -30,4 +30,12 @@ class Domainurl < ActiveRecord::Base
   			scoped
   		end
 	end
+
+  def domainupdate
+    #Ranking.new(:keyword => @domainurls.keyword}, :url =>  @domainurls.domainurl, :limit =>100).from_bing
+  #  @domainurl.yahoo_rank=Ranking.new(:keyword => "#{domainurl.keyword}", :url =>  "#{domainurl.domainurl}", :limit =>100).from_yahoo
+  # @domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)
+  #  @domainurl.alexa_global=domainurl.alexa_global[:alexa_global] 
+    
+  end
 end

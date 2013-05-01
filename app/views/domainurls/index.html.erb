@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-
+<% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
 <div class="row">
 <div class="small-12 small-centered columns">
 <table>
@@ -14,32 +14,46 @@
             <th><center><%= link_to sortable "yahoo_rank", "Yahoo" %></center></th>
             <th><center><%= link_to sortable "alexa_rank", "Alexa" %></center></th>
             <th><center><%= link_to sortable "updated_at", "Updated" %></center></th>
-            <th></th>
+            <th><center></center></th>
         </tr>
     </thead>
     <tbody>
+    
+    
+    
+
     <% @domainurls.find_all_by_user_id(current_user.id).each do |domainurl| %>   
         <tr>
             
             <td><%= domainurl.domainurl rescue "N/A" %></td>
             <td><center><%= domainurl.keyword rescue "N/A" %></center></td>
             <td><center><%= domainurl.category rescue "N/A" %></center></td>
-            <td><center><%= domainurl.google_rank rescue "N/A" %></center></td>
-            <td><center><%= domainurl.bing_rank %></center</td>
-            <td><center><%= domainurl.yahoo_rank%></center></td>
-            <td><center><% domainurl.alexa_global=PageRankr.ranks("#{domainurl.domainurl}", :alexa_global)%><%= domainurl.alexa_global=domainurl.alexa_global[:alexa_global] %> </center></td>
-            <td><center><% if domainurl.google_rank==nil %>
+            <td><center><% if domainurl.google_rank==nil %>100+
+                        <% else %>
+                        <%= domainurl.google_rank rescue "N/A" %>
+                        <% end %></center></td>
+            <td><center><% if domainurl.bing_rank==nil %>100+
+                        <% else %>
+                        <%= domainurl.bing_rank %>
+                        <% end %></center</td>
+            <td><center><% if domainurl.yahoo_rank==nil %>100+
+                        <% else %>
+                        <%= domainurl.yahoo_rank%>
+                        <% end %></center></td>
+            <td><center><%= domainurl.alexa_global %> </center></td>
+            <td><center><% if domainurl.alexa_global==nil %>
                 updating soon
                 <% else %>
                 <%= time_ago_in_words(domainurl.updated_at) rescue "N/A" %>
                 <% end %></center></td>
-            <td width="110"><ul class="button-group radius">
+            <td><center><ul class="button-group radius">
                 <%= link_to "Edit", edit_domainurl_path(domainurl),
                                                 :class=>"tiny button secondary"%>
                 <%= link_to "Delete", domainurl,    :method=>:delete,
                                                 :confirm=> "Permanently delete this URL-Keyword entry: #{domainurl.domainurl}, #{domainurl.keyword}?",
                                                 :class=>"tiny button alert"%>
             </ul>
+            </center>
             </td>
 
         </tr>
@@ -53,7 +67,7 @@
 <div class="row">
     <%= will_paginate @domainurls.find_all_by_user_id(current_user.id) %>
 </div>
-
+<% end %>
 <div class="row collapse">
    
             <%= simple_form_for(:domainurl) do |f| %>
@@ -71,10 +85,18 @@
 </div>
 <div class="row">
     <div class="small-4 columns">
-        <%= f.error :base %></div> 
-    </div>
+        <%= f.error :base %>
+    </div> 
+</div>
 
 <% end %> 
+
+<div class="row">
+    <center>
+<%= button_to "Refresh All", refresh_path(@domainurls), :method=>:put, :class=>"button radius" %></center>
+    
+</div>
+
 
 <% else %>
 <div class="row">
@@ -106,12 +128,13 @@
 <div class="small-3 columns">
 <ul class="pricing-table">
     <li class="title">Lite</li>
-    <li class="price">$9.97/ month</li>
-    <li class="bullet-item">75 URL/Keywords</li>
-    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="price">$6/ month</li>
+    <li class="bullet-item">50 URL/Keywords</li>
+    <li class="bullet-item">Daily Google Updates</li>
     <li class="description">Daily Bing Updates</li>
-    <li class="description">Daily Yahoo Updates</li>
+    <li class="description">Daily Yahoo Updates</li> 
     <li class="description">Alexa Rank</li>
+    <li class="description">On-Demand Updates</li>
     <li class="description">Saved Historical Data</li>
     <li class="description">Downloadable Reports</li>
     
@@ -120,12 +143,13 @@
 <div class="small-3 columns">
 <ul class="pricing-table">
     <li class="title">Standard</li>
-    <li class="price">$18.97/ month</li>
-    <li class="bullet-item">150 URL/Keywords</li>
-    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="price">$11/ month</li>
+    <li class="bullet-item">100 URL/Keywords</li>
+    <li class="bullet-item">Daily Google Updates</li>
     <li class="description">Daily Bing Updates</li>
     <li class="description">Daily Yahoo Updates</li>
     <li class="description">Alexa Rank</li>
+    <li class="description">On-Demand Updates</li>
     <li class="description">Saved Historical Data</li>
     <li class="description">Downloadable Reports</li>
     
@@ -134,12 +158,13 @@
 <div class="small-3 columns">
 <ul class="pricing-table">
     <li class="title">Pro</li>
-    <li class="price">$36.97/ month</li>
-    <li class="bullet-item">300 URL/Keywords</li>
-    <li class="bullet-item">Hourly Google Updates</li>
+    <li class="price">$20/ month</li>
+    <li class="bullet-item">200 URL/Keywords</li>
+    <li class="bullet-item">Daily Google Updates</li>
     <li class="description">Daily Bing Updates</li>
     <li class="description">Daily Yahoo Updates</li>
     <li class="description">Alexa Rank</li>
+    <li class="description">On-Demand Updates</li>
     <li class="description">Saved Historical Data</li>
     <li class="description">Downloadable Reports</li>
     

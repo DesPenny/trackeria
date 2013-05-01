@@ -7,6 +7,7 @@ class DomainurlsController < ApplicationController
       @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
       @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count} / 10"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
+      #@domainurl=Domainurl.find_all_by_user_id(current_user.id)
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -87,16 +88,23 @@ class DomainurlsController < ApplicationController
   end
   
   def domainupdate
+    Domainurl.find_all_by_user_id(current_user.id).each do |f|
+      sleep 1
+      f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bing
+      sleep 1
+      f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahoo
+      sleep 1
+      f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+      f.alexa_global=f.alexa_global[:alexa_global] 
+      sleep 1
+      f.save 
+    end
     redirect_to root_path
-    @domainurl = Domainurl.find(params[:id])
-    #Ranking.new(:keyword => domainurl.keyword, :url => domainurl.domainurl, :limit =>100).from_bing
-    #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_yahoo
-    #Ranking.new(:keyword => :keyword, :url => :domainurl, :limit =>100).from_googleUS
-    @domainurl.alexa_rank=PageRankr.ranks(:domainurl, :alexa_global)
-
   end
 
+
   private
+
 
     def sort_column
       Domainurl.column_names.include?(params[:sort]) ? params[:sort] : "created_at"

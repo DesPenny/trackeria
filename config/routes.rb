@@ -1,7 +1,7 @@
 Rankapp::Application.routes.draw do
 
   resources :domainurls
-
+  match '/refresh', :to=>'domainurls#domainupdate'
 
   devise_for :users
 
