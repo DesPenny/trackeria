@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require jquery.purr
 //= require best_in_place
-//= require foundation
 //= require_tree .
-
+//= require foundation
+$(document).foundation();
 $(function(){ $(document).foundation(); });
 
-$(document).foundation();
+
