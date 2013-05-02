@@ -18,6 +18,7 @@ gem 'delayed_job_active_record'
 gem 'whois'
 gem 'delayed_job_web'
 gem 'dalli'
+gem 'foreman'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #group :development do

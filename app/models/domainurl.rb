@@ -40,7 +40,7 @@ class Domainurl < ActiveRecord::Base
           sleep 1
           f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
           f.alexa_global=f.alexa_global[:alexa_global] 
-          sleep 11
+          sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
           f.save 
         end

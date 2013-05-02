@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script src="/js/custom.modernizr.js"></script>
 </head>
 <body>
 
@@ -30,13 +31,13 @@
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
     <%= text_field_tag :search, params[:search] %></li>
-    <li class="has-form"><%= submit_tag "Search", :class=>"button secondary round" %></li>
+    <li class="has-form"><div id="numero1"><%= submit_tag "Search", :class=>"button secondary round" %></div></li>
     <% end %>
     <% end %>
     </ul>
     <ul class="right">
         <% if user_signed_in? %>
-        <li class="active"><%= link_to "Help", edit_user_registration_path %></li>
+        <li class="active"><a href="#" data-reveal-id="helpModal">Help</a></li>
         <li class="divider"></li>
         <% if current_page?(domainurls_path)%>
       <li class="active"><%= link_to (@domaincount), edit_user_registration_path %></li>
@@ -71,6 +72,46 @@
         <br />
 <% end %>
 <%= yield %>
+<!-- Check for Zepto support, load jQuery if necessary -->
+<script>
+  document.write('<script src=/js/vendor/'
+    + ('__proto__' in {} ? 'zepto' : 'jquery')
+    + '.js><\/script>');
+</script>
+<script src="/js/foundation.min.js"></script>
+
+<!-- or individually -->
+
+<script src="/js/foundation.js"></script>
+<script src="/js/foundation.alerts.js"></script>
+<!-- ... -->
+<script src="/js/foundation.dropdown.js"></script>
+<script src="/js/foundation.section.js"></script>
+<script>
+  $(function(){
+    $(document).foundation();    
+  })
+</script>
+<script type="text/javascript">
+  $(document).foundation('joyride', 'start');
+</script>
+
+
+<div id="helpModal" class="reveal-modal medium">
+  <h3>Getting Started</h3>
+  Get started by adding a URL, Keyword, and (optinal) Category.<br /><br />
+  <h3>Filtering</h3>
+  Use the search feature at the top to filter your list.<br /><br />
+  <h3>Sorting</h3>
+  Click any column title to sort in ascending or descending order.<br /><br />
+  <h3>Refreshing</h3>
+  Refresh all your rankings on-demand with the bottom button. This will take a few minutes to process. <br /><br />
+  <h3>Past Rankings</h3>
+  Click a URL in your list to see the historical rankings. These are updated and saved automatically each day.<br /><br />
+ 
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
 
 </body>
 </html>

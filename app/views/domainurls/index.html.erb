@@ -6,7 +6,7 @@
     <thead>
         <tr>
             
-            <th><center><%= link_to sortable "domainurl", "URL" %></center></th>
+            <th><center><div id="numero2"><%= link_to sortable "domainurl", "URL" %></div></center></th>
             <th><center><%= link_to sortable "keyword"  %></center></th>
             <th><center><%= link_to sortable "category", "Category" %></center></th>
             <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
@@ -24,7 +24,7 @@
     <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
         <tr>
             
-            <td><%= f.domainurl rescue "N/A" %></td>
+            <td><div id="numero4"><%= f.domainurl rescue "N/A" %></div></td>
             <td><center><%= f.keyword rescue "N/A" %></center></td>
             <td><center><%= f.category rescue "N/A" %></center></td>
             <td><center><% if f.google_rank==nil && f.created_at != f.updated_at %>N/A
@@ -83,7 +83,7 @@
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
                 <div class="small-2 columns"><%= f.input :category, label: false%></div>
 
-                <div class="small-2 columns"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div>
+                <div class="small-2 columns"><div id="numero0"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div></div>
 </div>
 <div class="row">
     <div class="small-4 columns">
@@ -96,10 +96,11 @@
 <% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
 <div class="row">
     <center>
-<%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></center>
+<div id="numero3"><%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></div></center>
     
 </div>
 <% end %>
+
 
 
 <% else %>

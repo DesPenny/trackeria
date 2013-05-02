@@ -107,7 +107,7 @@ class DomainurlsController < ApplicationController
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 
-      flash[:notice] = 'Please wait at least 30 minutes between refreshes'
+      flash[:notice] = 'Due to Googles restrictions on automated queries, please wait at least 30 minutes between refreshes.'
       redirect_to root_path 
     end
   end
