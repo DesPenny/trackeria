@@ -61,24 +61,14 @@
   </section>
 </nav>
 </div>
-<br /><br />
+
 <% if notice!=nil %>
-<p />
-<div class="row">
-    <div class="small-4 small-centered columns">
-        <center><p class="notice"><%= notice %>
-        </center>
-    </div>
-</div>
+        <p class="notice"><center><%= notice %></center>
+        <br />
 <% end %>
 <% if alert!=nil %>
-<p />
-<div class="row">
-    <div class="small-4 small-centered columns">
-        <center>
-        <p class="alert"><%= alert %></center>
-    </div>
-</div>
+        <p class="alert"><center><%= alert %></center>
+        <br />
 <% end %>
 <%= yield %>
 
