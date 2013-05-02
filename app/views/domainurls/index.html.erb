@@ -43,8 +43,8 @@
                         <% else %>
                         <%= f.alexa_global %>
                         <% end %></center></td>
-            <td><center><% if f.updated_at<f.created_at+60 %>
-                updating soon
+            <td><center><% if f.updated_at<f.created_at+3 %>
+                awaiting update
                 <% else %>
                 <%= time_ago_in_words(f.updated_at) rescue "N/A" %>
                 <% end %></center></td>
