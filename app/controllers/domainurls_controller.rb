@@ -99,7 +99,10 @@ class DomainurlsController < ApplicationController
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
     uid=current_user.id
-    if Time.now.utc>(Domainurl.find_all_by_user_id(current_user.id).first.updated_at+1800) || Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at || Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at+1 || Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at-1
+    if Time.now.utc>(Domainurl.find_all_by_user_id(current_user.id).first.updated_at+1800) ||
+     Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at || 
+     Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at+1 || 
+     Domainurl.find_all_by_user_id(current_user.id).first.created_at==Domainurl.find_all_by_user_id(current_user.id).first.updated_at-1
         Domainurl.delay.domainupdatenow(uid)
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
