@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 #gem 'rails', '3.0.3'
 gem 'rails'
-gem 'heroku'
+#gem 'heroku'
 gem 'devise'
 gem 'keyword_rankr'
 #gem 'keyword_ranking'
