@@ -14,6 +14,7 @@
 #  page_rank    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  urlname      :string(255)
 #
 
 require 'spec_helper'

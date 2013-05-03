@@ -14,10 +14,11 @@
 #  page_rank    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  urlname      :string(255)
 #
 
 class History < ActiveRecord::Base
-  attr_accessible :alexa_global, :bing_rank, :category, :domainurl, :domainurl_id, :google_rank, :keyword, :page_rank, :yahoo_rank
+  attr_accessible :alexa_global, :bing_rank, :category, :domainurl, :domainurl_id, :google_rank, :keyword, :page_rank, :yahoo_rank, :urlname
 
   belongs_to :domainurl, :foreign_key=>"domainurl_id"
   

@@ -15,11 +15,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  alexa_global :string(255)
+#  urlname      :string(255)
 #
 
 class Domainurl < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :category, :domainurl, :keyword, :user_id, :google_rank, :bing_rank, :yahoo_rank, :alexa_rank, :page_rank
+  attr_accessible :category, :domainurl, :keyword, :user_id, :google_rank, :bing_rank, :yahoo_rank, :alexa_rank, :page_rank, :urlname
   has_many :histories, :dependent=>:destroy
 
   validates_presence_of :domainurl, :keyword
