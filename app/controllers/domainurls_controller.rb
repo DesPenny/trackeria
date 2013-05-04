@@ -54,18 +54,21 @@ class DomainurlsController < ApplicationController
     if Domainurl.find_all_by_user_id(current_user.id).count<100
       respond_to do |format|
         if @domainurl.save
-          format.html { redirect_to @domainurl, notice: 'Domainurl was successfully created.' }
+          format.html { redirect_to @domainurl, notice: 'URL was successfully created.' }
           format.json { render json: @domainurl, status: :created, location: @domainurl }
         else
-          format.html { render action: "new" }
+
+          #format.html { render action: "new" }
+          format.html { redirect_to @domainurl, notice: 'Please enter a valid URL and keyword.' }
           format.json { render json: @domainurl.errors, status: :unprocessable_entity }
+          
         end
       end
     else
       flash[:notice] = 'You have reached the limit of available URLs. Please delete some URLs to add more'
       redirect_to root_path
     end
-
+  
   end
 
   # PUT /domainurls/1
