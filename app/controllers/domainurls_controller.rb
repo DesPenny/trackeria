@@ -1,7 +1,7 @@
 class DomainurlsController < ApplicationController
   # GET /domainurls
   # GET /domainurls.json
-  
+  load_and_authorize_resource
   helper_method :sort_column, :sort_direction
   skip_before_filter :authenticate_user!, :only => [:index]
   def index
@@ -78,7 +78,7 @@ class DomainurlsController < ApplicationController
     flash[:notice]="#{@domainurl.domainurl} updated!"
     respond_to do |format|
       if @domainurl.update_attributes(params[:domainurl])
-        format.html { redirect_to @domainurl, notice: 'Domainurl was successfully updated.' }
+        format.html { redirect_to @domainurl, notice: 'URL was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -110,7 +110,7 @@ class DomainurlsController < ApplicationController
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 
-      flash[:notice] = 'Due to Googles restrictions on automated queries, please wait at least 30 minutes between refreshes.'
+      flash[:notice] = 'Due to Googles restrictions on search queries, please wait at least 30 minutes between refreshes.'
       redirect_to root_path 
     end
   end
