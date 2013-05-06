@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506162457) do
+ActiveRecord::Schema.define(:version => 20130506173036) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20130506162457) do
     t.integer  "google_rank"
     t.integer  "bing_rank"
     t.integer  "yahoo_rank"
-    t.integer  "alexa_rank"
     t.integer  "page_rank"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130506162457) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.datetime "deleted_at"
+    t.string   "plan"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

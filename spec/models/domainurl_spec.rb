@@ -10,7 +10,6 @@
 #  google_rank  :integer
 #  bing_rank    :integer
 #  yahoo_rank   :integer
-#  alexa_rank   :integer
 #  page_rank    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
