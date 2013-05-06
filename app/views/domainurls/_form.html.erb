@@ -3,6 +3,7 @@
     <div class="form-inputs">
     <%= f.input :domainurl, :label=>"URL" %>
     <%= f.input :keyword %>
+    <%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "Canada", "France"], :label=>"Country" %>
     <%= f.input :category, :required=>:false %>
     </div>
   

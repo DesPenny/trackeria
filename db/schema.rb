@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503165816) do
+ActiveRecord::Schema.define(:version => 20130506162457) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130503165816) do
     t.datetime "updated_at",   :null => false
     t.string   "alexa_global"
     t.string   "urlname"
+    t.string   "googlesource"
   end
 
   add_index "domainurls", ["user_id"], :name => "index_domainurls_on_user_id"

@@ -2,6 +2,7 @@ class DomainurlsController < ApplicationController
   # GET /domainurls
   # GET /domainurls.json
   load_and_authorize_resource
+  skip_authorize_resource :only => :domainupdate
   helper_method :sort_column, :sort_direction
   skip_before_filter :authenticate_user!, :only => [:index]
   def index
@@ -13,7 +14,8 @@ class DomainurlsController < ApplicationController
     end
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @domainurls }
+      format.json { render json: Domainurl.find_all_by_user_id(current_user.id) }
+      #format.csv { render text: Domainurl.find_all_by_user_id(current_user.id).to_csv }
     end
   end
 
@@ -60,7 +62,7 @@ class DomainurlsController < ApplicationController
         else
 
           #format.html { render action: "new" }
-          format.html { redirect_to @domainurl, notice: 'Please enter a valid URL and keyword.' }
+          format.html { redirect_to @domainurl, notice: 'Please enter a valid URL, keyword, and country' }
           format.json { render json: @domainurl.errors, status: :unprocessable_entity }
           
         end
@@ -76,10 +78,12 @@ class DomainurlsController < ApplicationController
   # PUT /domainurls/1.json
   def update
     @domainurl = Domainurl.find(params[:id])
-    flash[:notice]="#{@domainurl.domainurl} updated!"
+    #flash[:notice]="#{@domainurl.domainurl} updated!"
+
     respond_to do |format|
       if @domainurl.update_attributes(params[:domainurl])
-        format.html { redirect_to @domainurl, notice: 'URL was successfully updated.' }
+        #format.html { redirect_to @domainurl, notice: 'URL was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'URL was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

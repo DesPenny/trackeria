@@ -16,6 +16,7 @@
 #  updated_at   :datetime         not null
 #  alexa_global :string(255)
 #  urlname      :string(255)
+#  googlesource :string(255)
 #
 
 require 'spec_helper'

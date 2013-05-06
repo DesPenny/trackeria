@@ -16,14 +16,15 @@
 #  updated_at   :datetime         not null
 #  alexa_global :string(255)
 #  urlname      :string(255)
+#  googlesource :string(255)
 #
 
 class Domainurl < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :category, :domainurl, :keyword, :user_id, :google_rank, :bing_rank, :yahoo_rank, :alexa_rank, :page_rank, :urlname
+  attr_accessible :category, :domainurl, :keyword, :user_id, :google_rank, :bing_rank, :yahoo_rank, :alexa_rank, :page_rank, :urlname, :googlesource
   has_many :histories, :dependent=>:destroy
 
-  validates_presence_of :domainurl, :keyword
+  validates_presence_of :domainurl, :keyword, :googlesource
   #accepts_nested_attributes_for :histories
   
   def self.search(search)
@@ -34,8 +35,18 @@ class Domainurl < ActiveRecord::Base
   		end
 	end
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv<<column_names
+      all.each do |domainurl|
+        csv<<domainurl.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   def Domainurl.domainupdatenow(uid)
       Domainurl.find_all_by_user_id(uid).each do |f|
+        if f.googlesource=="USA"
           sleep 1
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahoo
           sleep 1
@@ -47,5 +58,42 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
           f.save 
         end
+        if f.googlesource=="UK"
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahoo
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bingUK
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 7 + rand(2)
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_google
+          f.save 
+        end
+        if f.googlesource=="Canada"
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahooCA
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bingCA
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 7 + rand(2)
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleCA
+          f.save 
+        end
+        if f.googlesource=="France"
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_yahooFR
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_bingFR
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 7 + rand(2)
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleFR
+          f.save 
+        end
       end
+  end
 end
