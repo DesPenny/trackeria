@@ -22,4 +22,5 @@ class History < ActiveRecord::Base
 
   belongs_to :domainurl, :foreign_key=>"domainurl_id"
   
+  
 end

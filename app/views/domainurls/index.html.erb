@@ -24,7 +24,7 @@
     <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
         <tr>
             
-            <td><div id="numero4"><%= f.domainurl rescue "N/A" %></div></td>
+            <td><div id="numero4"><%= link_to f.domainurl rescue "N/A" %></div></td>
             <td><center><%= f.keyword rescue "N/A" %></center></td>
             <td><center><%= f.category rescue "N/A" %></center></td>
             <td><center><% if f.google_rank==nil && f.created_at != f.updated_at %>N/A
@@ -103,6 +103,7 @@
 
 
 <% else %>
+
 <div class="row">
     <div class="small-6 small-offset-3 columns">
 <center><h2><center><br />Track Search Engine Rankings.<br /><br />Chart Trends.<br /><br />Get Instant Updates.<br /><br /></center></h2>

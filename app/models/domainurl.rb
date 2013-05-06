@@ -24,7 +24,8 @@ class Domainurl < ActiveRecord::Base
   has_many :histories, :dependent=>:destroy
 
   validates_presence_of :domainurl, :keyword
-
+  accepts_nested_attributes_for :histories
+  
   def self.search(search)
   		if search
     		where('domainurl LIKE ? OR keyword LIKE ? OR category LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
