@@ -24,7 +24,7 @@ class Domainurl < ActiveRecord::Base
   has_many :histories, :dependent=>:destroy
 
   validates_presence_of :domainurl, :keyword
-  accepts_nested_attributes_for :histories
+  #accepts_nested_attributes_for :histories
   
   def self.search(search)
   		if search
