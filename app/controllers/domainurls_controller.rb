@@ -21,7 +21,7 @@ class DomainurlsController < ApplicationController
   # GET /domainurls/1.json
   def show
     @domainurl = Domainurl.find(params[:id])
-    @history=History.find(params[:id])
+    @history=History.find_all_by_domainurl_id(@domainurl.id)
     #redirect_to root_path
     # respond_to do |format|
     #   format.html # show.html.erb

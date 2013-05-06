@@ -47,32 +47,29 @@
                 <%= (@domainurl.updated_at.to_date) rescue "N/A" %>
                 <% end %></center></td>
         </tr>
-          <% @history.find_all_by_user_id(current_user.id).each do |f| %>   
+          <% @history.each do |f| %>   
         <tr>
             
-            <td><center><% if f.google_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.google_rank==nil %>N/A
                         <% else %>
                         <%= f.google_rank rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><% if f.bing_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.bing_rank==nil %>N/A
                         <% else %>
-                        <%= f.bing_rank %>
+                        <%= f.bing_rank rescue "N/A" %>
                         <% end %></center</td>
-            <td><center><% if f.yahoo_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.yahoo_rank==nil %>N/A
                         <% else %>
-                        <%= f.yahoo_rank%>
+                        <%= f.yahoo_rank rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><% if f.alexa_global==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.alexa_global==nil %>N/A
                         <% else %>
-                        <%= f.alexa_global %>
+                        <%= f.alexa_global rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><% if f.updated_at<f.created_at+3 %>
-                awaiting update
-                <% else %>
-                <%= time_ago_in_words(f.updated_at) rescue "N/A" %>
-                <% end %></center></td>
+            <td><center><%= (f.created_at.to_date) rescue "" %></center></td>
         <tr>
-        </tr>   
+        </tr>
+        <% end %>   
     </tbody>
 </table>
 
