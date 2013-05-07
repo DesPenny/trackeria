@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trackr</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "vendor/custom.modernizr", "vendor/jquery", "vendor/zepto" %>
+  <%= javascript_include_tag "vendor/custom.modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -92,7 +92,13 @@
   Non-website search results (news, images, etc.) appearing before your URL in a search will be included when determining your search ranking. Also this tool only tracks the top 100 search results for a given keyword so if your URL appears further down the list then it won't be tracked.
   <a class="close-reveal-modal">&#215;</a>
 </div>
-
+<script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? '/assets/zepto' : '/assets/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  
 <%= javascript_include_tag "application" %>
 
 
