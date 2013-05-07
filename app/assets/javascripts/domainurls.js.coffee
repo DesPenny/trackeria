@@ -16,4 +16,3 @@ jQuery ->
     xkey: 'y'
     ykeys: ['a']
     labels: ['Series a']
-    

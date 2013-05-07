@@ -22,7 +22,8 @@ gem 'foreman'
 gem 'workless'
 gem 'cancan'
 gem 'exception_notification'
-
+gem 'morrisjs-rails'
+gem 'raphael-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #group :development do
