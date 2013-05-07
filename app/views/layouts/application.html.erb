@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
-  <title>Trackr</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= javascript_include_tag "vendor/custom.modernizr" %>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trackr</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "vendor/custom.modernizr", "vendor/jquery", "vendor/zepto" %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
     <%= text_field_tag :search, params[:search] %></li>
-    <li class="has-form"><div id="numero1"><%= submit_tag "Search", :class=>"button secondary round" %></div></li>
+    <li class="has-form"><div><%= submit_tag "Search", :class=>"button secondary round" %></div></li>
     <% end %>
     <% end %>
     </ul>
@@ -73,33 +74,7 @@
         <br />
 <% end %>
 <%= yield %>
-<!-- Check for Zepto support, load jQuery if necessary -->
-<script>
-  document.write('<script src=/js/vendor/'
-    + ('__proto__' in {} ? 'zepto' : 'jquery')
-    + '.js><\/script>');
-</script>
-<script src="/js/foundation.min.js"></script>
 
-<!-- or individually -->
-
-<script src="/js/foundation.js"></script>
-<script src="/js/foundation.alerts.js"></script>
-<!-- ... -->
-<script src="/js/foundation.dropdown.js"></script>
-<script src="/js/foundation.section.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-  google.load("visualization", "1", {packages:["corechart"]});
-</script>
-<script>
-  $(function(){
-    $(document).foundation();    
-  })
-</script>
-<script type="text/javascript">
-  $(document).foundation('joyride', 'start');
-</script>
 
 
 <div id="helpModal" class="reveal-modal medium">
@@ -117,6 +92,8 @@
   Non-website search results (news, images, etc.) appearing before your URL in a search will be included when determining your search ranking. Also this tool only tracks the top 100 search results for a given keyword so if your URL appears further down the list then it won't be tracked.
   <a class="close-reveal-modal">&#215;</a>
 </div>
+
+<%= javascript_include_tag "application" %>
 
 
 </body>

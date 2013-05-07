@@ -13,13 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require raphael
-//= require morris
-//= require jquery.purr
 //= require_tree .
 
-
-
-
-
-$(function(){ $(document).foundation(); });
+$(document).foundation();
