@@ -1,12 +1,12 @@
 // Required global settings and mixins for Foundation
-@import "foundation/foundation-global";
+//@import "foundation/foundation-global";
 
 // Settings file to override Foundation variables
 
 // You can find the variables for each component at the bottom of their
 // doc page. We tried to name them to where they'd make sense just by reading them.
 // Go to http://foundation.zurb.com/docs/ to find what you need.
-
+@import "foundation";
 //
 // Foundation Global Variables
 //
@@ -909,22 +909,22 @@
 // $table-border-color: #ddd;
 
 // These control the table head styles
- $table-head-bg: #fff;
+   $table-head-bg: #fff;
 // $table-head-font-size: emCalc(14px);
 // $table-head-font-color: #222;
 // $table-head-font-weight: bold;
- $table-head-padding: emCalc(14px) emCalc(14px) emCalc(0px);
+// $table-head-padding: emCalc(14px) emCalc(14px) emCalc(0px);
 
 
 // These control the row padding and font styles
- $table-row-padding: emCalc(5px) emCalc(5px);
- $table-row-font-size: emCalc(12px);
+   $table-row-padding: emCalc(5px) emCalc(5px);
+   $table-row-font-size: emCalc(12px);
 // $table-row-font-color: #222;
- $table-line-height: emCalc(18px);
+   $table-line-height: emCalc(18px);
 
 // These are for controlling the display and margin of tables
 // $table-display: table-cell;
- $table-margin-bottom: emCalc(10px);
+   $table-margin-bottom: emCalc(10px);
 
 //
 // Image Thumbnail Variables
@@ -1010,4 +1010,4 @@
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
 
-@import 'foundation';
+

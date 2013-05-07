@@ -1,28 +1,45 @@
 
 
+<div id="annual"></div>
+
+
 
 <div class="row">
-<div class="small-4 small-offset-4 columns">
-  <center><p id="notice"><%= notice %></p></center>
+<div class="small-8 small-offset-2 columns">
+  <center><p id="notice"><%= notice %></p>
 
   <b>URL:</b>
   <%= @domainurl.domainurl %> | 
   <b>Keyword:</b>
-  <%= @domainurl.keyword %>
-  <br /><b>Country:</b>
+  <%= @domainurl.keyword %> |
+  <b>Country:</b>
   <%= @domainurl.googlesource %> |
   <b>Category:</b>
-  <%= @domainurl.category %>
+  <%= @domainurl.category %></center>
 <br />
 <br />
+</div>
+</div>
+<div class="row">
+<div class="small-4 small-offset-4 columns">
 <table>
     <thead>
         <tr>
-            <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
+            <!-- <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
             <th><center><%= link_to sortable "bing_rank", "Bing" %></center></th>
             <th><center><%= link_to sortable "yahoo_rank", "Yahoo" %></center></th>
             <th><center><%= link_to sortable "alexa_rank", "Alexa" %></center></th>
-            <th><center><%= link_to sortable "updated_at", "Date" %></center></th>
+            <th><center><%= link_to sortable "updated_at", "Date" %></center></th> -->
+            <!-- <th><center><div data-alert class="alert-box secondary">Google</div></center></th>
+            <th><center><div data-alert class="alert-box secondary">Bing</div></center></th>
+            <th><center><div data-alert class="alert-box secondary">Yahoo</div></center></th>
+            <th><center><div data-alert class="alert-box secondary">Alexa</div></center></th>
+            <th><center><div data-alert class="alert-box secondary">Date</div></center></th> -->
+            <th><center>Google</center></th>
+            <th><center>Bing</center></th>
+            <th><center>Yahoo</center></th>
+            <th><center>Alexa</center></th>
+            <th><center>Date</center></th>
         </tr>
     </thead>
     <tbody>

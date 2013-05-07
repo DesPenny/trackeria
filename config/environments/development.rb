@@ -34,5 +34,11 @@ Rankapp::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
+
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'ericcarter103@gmail.com',
+    exception_recipients: 'ericcarter103@gmail.com'
+
+  config.action_mailer.delivery_method=:letter_opener
 end

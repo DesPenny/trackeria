@@ -21,6 +21,8 @@ gem 'dalli'
 gem 'foreman'
 gem 'workless'
 gem 'cancan'
+gem 'exception_notification'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #group :development do
@@ -44,7 +46,7 @@ group :development do
   gem 'ZenTest'
   gem 'autotest-fsevent'
   gem 'annotate'
-  
+  gem 'letter_opener'
 end
 
 group :test do

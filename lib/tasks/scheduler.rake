@@ -1,7 +1,20 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_history => :environment do
-  update_domainurl
   update_history
+  update_domainurl
+end
+
+def update_history
+	Domainurl.all.each do |f|
+		f.histories.create(	 
+							:keyword=>f.keyword, 
+							:domainurl_id=>f.id,
+							:category=>f.category,
+							:google_rank=>f.google_rank,
+							:bing_rank=>f.bing_rank,
+							:yahoo_rank=>f.yahoo_rank,
+							:alexa_global=>f.alexa_global)
+	end
 end
 
 def update_domainurl
@@ -19,15 +32,3 @@ def update_domainurl
 	end
 end
 
-def update_history
-	Domainurl.all.each do |f|
-		f.histories.create(	 
-							:keyword=>f.keyword, 
-							:domainurl_id=>f.id,
-							:category=>f.category,
-							:google_rank=>f.google_rank,
-							:bing_rank=>f.bing_rank,
-							:yahoo_rank=>f.yahoo_rank,
-							:alexa_global=>f.alexa_global)
-	end
-end

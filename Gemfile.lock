@@ -35,6 +35,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    addressable (2.3.4)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -87,6 +88,8 @@ GEM
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     erubis (2.7.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     excon (0.20.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -119,6 +122,10 @@ GEM
     jsonpath (0.5.2)
       multi_json
     keyword_rankr (0.0.3)
+    launchy (2.2.0)
+      addressable (~> 2.3)
+    letter_opener (1.1.0)
+      launchy (~> 2.2.0)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -239,6 +246,7 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_job_web
   devise
+  exception_notification
   factory_girl
   factory_girl_rails
   faker
@@ -246,6 +254,7 @@ DEPENDENCIES
   jquery-rails
   json
   keyword_rankr
+  letter_opener
   pg
   rails
   rspec-rails

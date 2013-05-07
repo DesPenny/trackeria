@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require raphael
+//= require morris
 //= require jquery.purr
-//= require best_in_place
 //= require_tree .
 //= require foundation
 $(document).foundation();

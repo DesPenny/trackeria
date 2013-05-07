@@ -123,7 +123,7 @@ class DomainurlsController < ApplicationController
 
 
   private
-    
+    @urlcount    
 
     def sort_column
       Domainurl.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
