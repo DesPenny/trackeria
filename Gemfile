@@ -15,15 +15,14 @@ gem 'jquery-rails'
 gem 'best_in_place'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'whois'
+#gem 'whois'
 gem 'delayed_job_web'
 gem 'dalli'
 gem 'foreman'
 gem 'workless'
 gem 'cancan'
 gem 'exception_notification'
-gem 'morrisjs-rails'
-gem 'raphael-rails'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #group :development do

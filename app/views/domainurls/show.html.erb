@@ -35,15 +35,21 @@
             <th><center><div data-alert class="alert-box secondary">Yahoo</div></center></th>
             <th><center><div data-alert class="alert-box secondary">Alexa</div></center></th>
             <th><center><div data-alert class="alert-box secondary">Date</div></center></th> -->
+            <th><center>Date</center></th>
             <th><center>Google</center></th>
             <th><center>Bing</center></th>
             <th><center>Yahoo</center></th>
             <th><center>Alexa</center></th>
-            <th><center>Date</center></th>
+            
         </tr>
     </thead>
     <tbody>
-        <tr>        
+        <tr>   
+            <td><center><% if @domainurl.updated_at<@domainurl.created_at+3 %>
+                awaiting update
+                <% else %>
+                <%= (@domainurl.updated_at.to_date) rescue "N/A" %>
+                <% end %></center></td>     
             <td><center><% if @domainurl.google_rank==nil && @domainurl.created_at != @domainurl.updated_at %>N/A
                         <% else %>
                         <%= @domainurl.google_rank rescue "N/A" %>
@@ -60,15 +66,11 @@
                         <% else %>
                         <%= @domainurl.alexa_global %>
                         <% end %></center></td>
-            <td><center><% if @domainurl.updated_at<@domainurl.created_at+3 %>
-                awaiting update
-                <% else %>
-                <%= (@domainurl.updated_at.to_date) rescue "N/A" %>
-                <% end %></center></td>
+            
         </tr>
           <% @history.each do |f| %>   
         <tr>
-            
+            <td><center><%= (f.created_at.to_date) rescue "" %></center></td>
             <td><center><% if f.google_rank==nil %>N/A
                         <% else %>
                         <%= f.google_rank rescue "N/A" %>
@@ -85,7 +87,7 @@
                         <% else %>
                         <%= f.alexa_global rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><%= (f.created_at.to_date) rescue "" %></center></td>
+            
         <tr>
         </tr>
         <% end %>   

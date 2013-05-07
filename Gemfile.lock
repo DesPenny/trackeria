@@ -131,8 +131,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    morrisjs-rails (0.4.2.1)
-      railties (> 3.1, < 5)
     multi_json (1.7.2)
     multi_xml (0.5.3)
     nokogiri (1.5.9)
@@ -165,7 +163,6 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
-    raphael-rails (2.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec-core (2.13.1)
@@ -218,7 +215,6 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    whois (3.1.1)
     will_paginate (3.0.4)
     workless (1.1.2)
       delayed_job (>= 2.0.7)
@@ -258,17 +254,14 @@ DEPENDENCIES
   json
   keyword_rankr
   letter_opener
-  morrisjs-rails
   pg
   rails
-  raphael-rails
   rspec-rails
   sass-rails
   simple_form
   sqlite3
   uglifier
   webrat
-  whois
   will_paginate
   workless
   zurb-foundation
