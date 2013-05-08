@@ -7,6 +7,7 @@
   <title>Trackr</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "vendor/custom.modernizr" %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -96,9 +97,9 @@
   document.write('<script src=' +
   ('__proto__' in {} ? '/assets/zepto' : '/assets/jquery') +
   '.js><\/script>')
-  </script>
-  
-  
+</script>
+ 
+
 <%= javascript_include_tag "application" %>
 
 
