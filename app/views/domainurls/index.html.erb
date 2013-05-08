@@ -98,6 +98,8 @@
 <% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
 <div class="row">
     <center>
+        <br />
+        <br />
 <div id="numero3"><%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></div></center>
     
 </div>

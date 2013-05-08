@@ -10,7 +10,9 @@
   <%= @domainurl.googlesource %> |
   <b>Category:</b>
   <%= @domainurl.category %>
-  <br />
+  <br /><br />
+    <%= link_to 'Edit', edit_domainurl_path(@domainurl) %> |
+    <%= link_to 'Back', domainurls_path %>
 </div>
 </div>
 <div class="row">
@@ -99,8 +101,7 @@
 
 
 
-<%= link_to 'Edit', edit_domainurl_path(@domainurl) %> |
-<%= link_to 'Back', domainurls_path %>
+
 
 </div>
 </div>
