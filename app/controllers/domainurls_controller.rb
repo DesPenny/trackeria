@@ -29,7 +29,25 @@ class DomainurlsController < ApplicationController
     #   format.html # show.html.erb
     #   format.json { render json: @domainurl }
     # end
+    data_table = GoogleVisualr::DataTable.new
 
+    # Add Column Headers
+    data_table.new_column('string', 'Date' )
+    data_table.new_column('number', 'Google')
+    
+    
+
+    # Add Rows and Values
+    data_table.add_rows([
+     ['2004', 1 ],
+     ['2005', 1 ],
+     ['2006', 1 ],
+     ['2007', nil ],
+     ['2008', 1 ]
+    ])
+
+    option = { width: 600, height: 450,  vAxis: {direction: -1, minValue: 1, maxValue: 100 }, pointSize: 10, lineWidth: 3 }
+    @chart = GoogleVisualr::Interactive::LineChart.new(data_table, option)
   end
 
   # GET /domainurls/new
@@ -120,7 +138,9 @@ class DomainurlsController < ApplicationController
     end
   end
 
+  
 
+  
 
   private
     @urlcount    

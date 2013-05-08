@@ -66,6 +66,8 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'rmagick'
+gem 'google_visualr'
 gem 'devise'
 gem 'keyword_rankr'
 #gem 'keyword_ranking'
@@ -86,7 +88,7 @@ gem 'dalli'
 gem 'cancan'
 gem 'exception_notification'
 gem 'jbuilder'
-gem 'zepto-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

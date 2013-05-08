@@ -1,7 +1,7 @@
-<div class="row">
-<div class="small-8 small-offset-2 columns">
-  <center><p id="notice"><%= notice %></p>
 
+<div class="row">
+  <center><p id="notice"><%= notice %></p></center>
+<div class="small-10 small-offset-1 columns">
   <b>URL:</b>
   <%= @domainurl.domainurl %> | 
   <b>Keyword:</b>
@@ -9,13 +9,20 @@
   <b>Country:</b>
   <%= @domainurl.googlesource %> |
   <b>Category:</b>
-  <%= @domainurl.category %></center>
-<br />
-<br />
+  <%= @domainurl.category %>
+  <br />
 </div>
 </div>
 <div class="row">
-<div class="small-4 small-offset-4 columns">
+<div id='chart'>
+<div class="small-4 columns">
+<%= render_chart(@chart, 'chart') %>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="small-10 small-offset-1 columns">
 <table>
     <thead>
         <tr>
