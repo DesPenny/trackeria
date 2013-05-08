@@ -2,20 +2,22 @@
 #
 # Table name: domainurls
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  domainurl    :string(255)
-#  keyword      :string(255)
-#  category     :string(255)
-#  google_rank  :integer
-#  bing_rank    :integer
-#  yahoo_rank   :integer
-#  page_rank    :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  alexa_global :string(255)
-#  urlname      :string(255)
-#  googlesource :string(255)
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  domainurl       :string(255)
+#  keyword         :string(255)
+#  category        :string(255)
+#  google_rank     :integer
+#  bing_rank       :integer
+#  yahoo_rank      :integer
+#  page_rank       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  alexa_global    :string(255)
+#  urlname         :string(255)
+#  googlesource    :string(255)
+#  refreshed       :datetime
+#  refreshedactual :datetime
 #
 
 class Domainurl < ActiveRecord::Base
@@ -55,6 +57,7 @@ class Domainurl < ActiveRecord::Base
           f.alexa_global=f.alexa_global[:alexa_global] 
           sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
+          f.refreshedactual=Time.now.utc
           f.save 
         end
         if f.googlesource=="UK"
@@ -67,6 +70,7 @@ class Domainurl < ActiveRecord::Base
           f.alexa_global=f.alexa_global[:alexa_global] 
           sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_google
+          f.refreshedactual=Time.now.utc
           f.save 
         end
         if f.googlesource=="Canada"
@@ -79,6 +83,7 @@ class Domainurl < ActiveRecord::Base
           f.alexa_global=f.alexa_global[:alexa_global] 
           sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleCA
+          f.refreshedactual=Time.now.utc
           f.save 
         end
         if f.googlesource=="France"
@@ -91,6 +96,7 @@ class Domainurl < ActiveRecord::Base
           f.alexa_global=f.alexa_global[:alexa_global] 
           sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleFR
+          f.refreshedactual=Time.now.utc
           f.save 
         end
       end

@@ -27,26 +27,26 @@
             <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "N/A" %> (<%= f.googlesource %>)</div></td>
             <td><center><%= f.keyword rescue "N/A" %></center></td>
             <td><center><%= f.category rescue "N/A" %></center></td>
-            <td><center><% if f.google_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.google_rank==nil && f.refreshedactual==nil %>N/A
                         <% else %>
                         <%= f.google_rank rescue "N/A" %>
                         <% end %></center></td>
-            <td><center><% if f.bing_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.bing_rank==nil && f.refreshedactual==nil %>N/A
                         <% else %>
                         <%= f.bing_rank %>
                         <% end %></center</td>
-            <td><center><% if f.yahoo_rank==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.yahoo_rank==nil && f.refreshedactual==nil %>N/A
                         <% else %>
                         <%= f.yahoo_rank%>
                         <% end %></center></td>
-            <td><center><% if f.alexa_global==nil && f.created_at != f.updated_at %>N/A
+            <td><center><% if f.alexa_global==nil && f.refreshedactual==nil %>N/A
                         <% else %>
                         <%= f.alexa_global %>
                         <% end %></center></td>
-            <td><center><% if f.updated_at<f.created_at+3 %>
+            <td><center><% if f.refreshedactual==nil %>
                 awaiting update
                 <% else %>
-                <%= time_ago_in_words(f.updated_at) rescue "N/A" %>
+                <%= time_ago_in_words(f.refreshedactual) rescue "N/A" %>
                 <% end %></center></td>
             <td><center><ul class="button-group radius">
                 <%= link_to "Edit", edit_domainurl_path(f),
@@ -82,7 +82,7 @@
                 <div class="small-1 columns"><span class="prefix">Keyword</span></div>
                 <div class="small-1 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
-                <div class="small-1 columns"><%= f.input :category, label: false%></div>
+                <div class="small-1 columns"><%= f.input :category, label: false %></div>
                 <div class="small-1 columns"><span class="prefix">Country</span></div>
                 <div class="small-1 columns"><%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "Canada", "France"], label: false, :selected=>["USA"] %></div>
                 <div class="small-2 columns"><div id="numero0"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div></div>

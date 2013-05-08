@@ -124,15 +124,20 @@ class DomainurlsController < ApplicationController
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
     uid=current_user.id
-    if Time.now.utc>(@domainurl.first.updated_at+1800) ||
-     @domainurl.first.created_at==(@domainurl.first.updated_at) || 
-     @domainurl.first.created_at==(@domainurl.first.updated_at+1) || 
-     @domainurl.first.created_at==(@domainurl.first.updated_at-1)
+    if @domainurl.first.refreshed==nil || Time.now.utc>(@domainurl.first.refreshed)+1800
+    # if Time.now.utc>(@domainurl.first.updated_at+1800) ||
+    #  @domainurl.first.created_at==(@domainurl.first.updated_at) || 
+    #  @domainurl.first.created_at==(@domainurl.first.updated_at+1) || 
+    #  @domainurl.first.created_at==(@domainurl.first.updated_at-1)
+      Domainurl.find_all_by_user_id(uid).each do |f|
+        f.refreshed=Time.now.utc
+        f.save
+      end
         Domainurl.delay.domainupdatenow(uid)
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 
-      flash[:notice] = 'Due to Googles restrictions on search queries, please wait at least 30 minutes between refreshes.'
+      flash[:notice] = 'Please wait at least 30 minutes between refreshes.'
       redirect_to root_path 
     end
   end
