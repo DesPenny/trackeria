@@ -40,10 +40,16 @@ class DomainurlsController < ApplicationController
     
 
     # Add Rows and Values
+    
+    
+    data_table.add_row([Domainurl.find(params[:id]).refreshedactual.to_date, Domainurl.find(params[:id]).yahoo_rank, Domainurl.find(params[:id]).bing_rank, Domainurl.find(params[:id]).google_rank ])
+    
+
     @history.each do |f|
     data_table.add_row(
         [f.created_at.to_date, f.yahoo_rank, f.bing_rank, f.google_rank ])
     end
+
     option = { width: 600, height: 450, colors: ['purple', 'orange', 'blue'], vAxis: {direction: -1, minValue: 1, maxValue: 100 }, pointSize: 7, lineWidth: 3 }
     @chart = GoogleVisualr::Interactive::LineChart.new(data_table, option)
 
