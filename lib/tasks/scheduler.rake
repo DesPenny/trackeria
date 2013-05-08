@@ -7,6 +7,7 @@ end
 def update_history
 	Domainurl.all.each do |f|
 		f.histories.create(	 
+							:urlname=>f.domainurl,
 							:keyword=>f.keyword, 
 							:domainurl_id=>f.id,
 							:category=>f.category,
@@ -28,6 +29,7 @@ def update_domainurl
         f.alexa_global=f.alexa_global[:alexa_global] 
         sleep 7 + rand(2)
         f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit =>100).from_googleUS
+        f.refreshedactual=Time.now.utc
         f.save 
 	end
 end

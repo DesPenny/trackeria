@@ -37,14 +37,8 @@ class DomainurlsController < ApplicationController
     data_table.new_column('number', 'Bing')
     data_table.new_column('number', 'Google')
     
-    
-
     # Add Rows and Values
-    
-    
     data_table.add_row([Domainurl.find(params[:id]).refreshedactual.to_date, Domainurl.find(params[:id]).yahoo_rank, Domainurl.find(params[:id]).bing_rank, Domainurl.find(params[:id]).google_rank ])
-    
-
     @history.each do |f|
     data_table.add_row(
         [f.created_at.to_date, f.yahoo_rank, f.bing_rank, f.google_rank ])
