@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_history => :environment do
-  update_history
   update_domainurl
+  update_history
 end
 
 def update_domainurl
