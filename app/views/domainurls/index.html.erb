@@ -25,29 +25,29 @@
     <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
         <tr>
             
-            <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "N/A" %> (<%= f.googlesource %>)</div></td>
-            <td><center><%= f.keyword rescue "N/A" %></center></td>
-            <td><center><%= f.category rescue "N/A" %></center></td>
-            <td><center><% if f.google_rank==nil && f.refreshedactual==nil %>N/A
+            <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "-" %> (<%= f.googlesource %>)</div></td>
+            <td><center><%= f.keyword rescue "-" %></center></td>
+            <td><center><%= f.category rescue "-" %></center></td>
+            <td><center><% if f.google_rank==nil && f.refreshedactual==nil %>-
                         <% else %>
-                        <%= f.google_rank rescue "N/A" %>
+                        <%= f.google_rank rescue "-" %>
                         <% end %></center></td>
-            <td><center><% if f.bing_rank==nil && f.refreshedactual==nil %>N/A
+            <td><center><% if f.bing_rank==nil && f.refreshedactual==nil %>-
                         <% else %>
                         <%= f.bing_rank %>
                         <% end %></center</td>
-            <td><center><% if f.yahoo_rank==nil && f.refreshedactual==nil %>N/A
+            <td><center><% if f.yahoo_rank==nil && f.refreshedactual==nil %>-
                         <% else %>
                         <%= f.yahoo_rank%>
                         <% end %></center></td>
-            <td><center><% if f.alexa_global==nil && f.refreshedactual==nil %>N/A
+            <td><center><% if f.alexa_global==nil && f.refreshedactual==nil %>-
                         <% else %>
                         <%= f.alexa_global %>
                         <% end %></center></td>
             <td><center><% if f.refreshedactual==nil %>
                 awaiting update
                 <% else %>
-                <%= time_ago_in_words(f.refreshedactual) rescue "N/A" %>
+                <%= time_ago_in_words(f.refreshedactual) rescue "-" %>
                 <% end %></center></td>
             <td><center><ul class="button-group radius">
                 <%= link_to "Edit", edit_domainurl_path(f),

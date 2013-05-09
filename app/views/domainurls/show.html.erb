@@ -51,21 +51,21 @@
             <td><center><% if @domainurl.updated_at<@domainurl.created_at+3 %>
                 awaiting update
                 <% else %>
-                <%= (@domainurl.updated_at.to_date) rescue "N/A" %>
+                <%= (@domainurl.updated_at.to_date) rescue "-" %>
                 <% end %></center></td>     
-            <td><center><% if @domainurl.google_rank==nil && @domainurl.created_at != @domainurl.updated_at %>N/A
+            <td><center><% if @domainurl.google_rank==nil && @domainurl.created_at != @domainurl.updated_at %>-
                         <% else %>
-                        <%= @domainurl.google_rank rescue "N/A" %>
+                        <%= @domainurl.google_rank rescue "-" %>
                         <% end %></center></td>
-            <td><center><% if @domainurl.bing_rank==nil && @domainurl.created_at != @domainurl.updated_at %>N/A
+            <td><center><% if @domainurl.bing_rank==nil && @domainurl.created_at != @domainurl.updated_at %>-
                         <% else %>
                         <%= @domainurl.bing_rank %>
                         <% end %></center</td>
-            <td><center><% if @domainurl.yahoo_rank==nil && @domainurl.created_at != @domainurl.updated_at %>N/A
+            <td><center><% if @domainurl.yahoo_rank==nil && @domainurl.created_at != @domainurl.updated_at %>-
                         <% else %>
                         <%= @domainurl.yahoo_rank%>
                         <% end %></center></td>
-            <td><center><% if @domainurl.alexa_global==nil && @domainurl.created_at != @domainurl.updated_at %>N/A
+            <td><center><% if @domainurl.alexa_global==nil && @domainurl.created_at != @domainurl.updated_at %>-
                         <% else %>
                         <%= @domainurl.alexa_global %>
                         <% end %></center></td>
@@ -74,21 +74,21 @@
           <% @history.each do |f| %>   
         <tr>
             <td><center><%= (f.created_at.to_date) rescue "" %></center></td>
-            <td><center><% if f.google_rank==nil %>N/A
+            <td><center><% if f.google_rank==nil %>-
                         <% else %>
-                        <%= f.google_rank rescue "N/A" %>
+                        <%= f.google_rank rescue "-" %>
                         <% end %></center></td>
-            <td><center><% if f.bing_rank==nil %>N/A
+            <td><center><% if f.bing_rank==nil %>-
                         <% else %>
-                        <%= f.bing_rank rescue "N/A" %>
+                        <%= f.bing_rank rescue "-" %>
                         <% end %></center</td>
-            <td><center><% if f.yahoo_rank==nil %>N/A
+            <td><center><% if f.yahoo_rank==nil %>-
                         <% else %>
-                        <%= f.yahoo_rank rescue "N/A" %>
+                        <%= f.yahoo_rank rescue "-" %>
                         <% end %></center></td>
-            <td><center><% if f.alexa_global==nil %>N/A
+            <td><center><% if f.alexa_global==nil %>-
                         <% else %>
-                        <%= f.alexa_global rescue "N/A" %>
+                        <%= f.alexa_global rescue "-" %>
                         <% end %></center></td>
             
         <tr>
