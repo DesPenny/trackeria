@@ -24,17 +24,15 @@ class History < ActiveRecord::Base
   
   default_scope :order=>'histories.created_at DESC'
 
-  def self.chart_data(start = 3.weeks.ago)
-  total_prices = prices_by_day(start)
-  shipping_prices = where(shipping: true).prices_by_day(start)
-  download_prices = where(shipping: false).prices_by_day(start)
-  (start.to_date..Date.today).map do |date|
-    {
-      purchased_at: date,
-      price: total_prices[date] || 0,
-      shipping_price: shipping_prices[date] || 0,
-      download_price: download_prices[date] || 0
-    }
+
+  def self.to_csv(all_histories)
+    CSV.generate(:col_sep => "," ) do |csv|
+      csv << [ 'urlname', 'keyword', 'category', 'google_rank', 'bing_rank', 'yahoo_rank', 'alexa_global', 'updated_at']
+      all_histories.each do |f|
+        csv << [ "#{f.urlname}", "#{f.keyword}", f.category, f.google_rank, f.bing_rank, f.yahoo_rank, f.alexa_global, f.updated_at]
+      end
+    end
   end
-end
+
+
 end

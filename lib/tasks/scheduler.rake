@@ -4,20 +4,6 @@ task :update_history => :environment do
   update_domainurl
 end
 
-def update_history
-	Domainurl.all.each do |f|
-		f.histories.create(	 
-							:urlname=>f.domainurl,
-							:keyword=>f.keyword, 
-							:domainurl_id=>f.id,
-							:category=>f.category,
-							:google_rank=>f.google_rank,
-							:bing_rank=>f.bing_rank,
-							:yahoo_rank=>f.yahoo_rank,
-							:alexa_global=>f.alexa_global)
-	end
-end
-
 def update_domainurl
 	Domainurl.all.each do |f|
 		sleep 1
@@ -33,4 +19,20 @@ def update_domainurl
         f.save 
 	end
 end
+
+def update_history
+	Domainurl.all.each do |f|
+		f.histories.create(	 
+							:urlname=>f.domainurl,
+							:keyword=>f.keyword, 
+							:domainurl_id=>f.id,
+							:category=>f.category,
+							:google_rank=>f.google_rank,
+							:bing_rank=>f.bing_rank,
+							:yahoo_rank=>f.yahoo_rank,
+							:alexa_global=>f.alexa_global)
+	end
+end
+
+
 

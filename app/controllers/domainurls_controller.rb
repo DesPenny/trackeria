@@ -4,18 +4,19 @@ class DomainurlsController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource :only => :domainupdate
   helper_method :sort_column, :sort_direction
-  skip_before_filter :authenticate_user!, :only => [:index, :terms, :privacy]
+  skip_before_filter :authenticate_user!, :only => [:index]
   def index
     if signed_in?
       @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
       @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/100"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
-      #@domainurl=Domainurl.find_all_by_user_id(current_user.id)
+      @url=Domainurl.find_all_by_user_id(current_user.id)
+      @histories=History.find_all_by_domainurl_id(@url)
     end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: Domainurl.find_all_by_user_id(current_user.id) }
-      #format.csv { render text: Domainurl.find_all_by_user_id(current_user.id).to_csv }
+      format.csv { send_data History.to_csv(@histories) }
     end
   end
 
@@ -120,12 +121,7 @@ class DomainurlsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def terms
-  end
 
-  def privacy
-  end
 
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
