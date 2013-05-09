@@ -82,6 +82,6 @@ Rankapp::Application.configure do
 
   config.middleware.use ExceptionNotifier,
      sender_address: 'notifier@trackeria.com',
-     exception_recipients: 'morefollows4u@gmail.com'
+     exception_recipients: 'info@trackeria.com'
 
 end
