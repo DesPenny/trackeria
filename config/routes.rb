@@ -1,17 +1,18 @@
 Rankapp::Application.routes.draw do
 
   resources :histories
-  resources :pages
+  #resources :pages
 
   resources :domainurls
   match '/refresh', :to=>'domainurls#domainupdate'
   match "/delayed_job" => DelayedJobWeb, :anchor => false
+  match '/privacy', :to => 'domainurls#privacy'
+  match '/terms', :to => 'domainurls#terms'
   devise_for :users
 
   root :to => 'domainurls#index'
 
-  match '/privacy', :to => 'pages#privacy'
-  match '/terms', :to => 'pages#terms'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

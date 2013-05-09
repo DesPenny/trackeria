@@ -4,7 +4,7 @@ class DomainurlsController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource :only => :domainupdate
   helper_method :sort_column, :sort_direction
-  skip_before_filter :authenticate_user!, :only => [:index]
+  skip_before_filter :authenticate_user!, :only => [:index, :terms, :privacy]
   def index
     if signed_in?
       @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
@@ -121,6 +121,12 @@ class DomainurlsController < ApplicationController
     end
   end
   
+  def terms
+  end
+
+  def privacy
+  end
+
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
     uid=current_user.id
