@@ -1,7 +1,7 @@
 Rankapp::Application.routes.draw do
 
   resources :histories
-
+  resources :pages
 
   resources :domainurls
   match '/refresh', :to=>'domainurls#domainupdate'
