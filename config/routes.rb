@@ -9,6 +9,9 @@ Rankapp::Application.routes.draw do
   devise_for :users
 
   root :to => 'domainurls#index'
+
+  match '/privacy', :to => 'pages#privacy'
+  match '/terms', :to => 'pages#terms'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
