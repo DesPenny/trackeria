@@ -79,4 +79,9 @@ Rankapp::Application.configure do
   :entitystore  => 'file:tmp/cache/rack/body',
   :allow_reload => false
   }
+
+  config.middleware.use ExceptionNotifier,
+     sender_address: 'notifier@trackeria.com',
+     exception_recipients: 'morefollows4u@gmail.com'
+
 end
