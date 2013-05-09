@@ -1,6 +1,14 @@
 Rankapp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  #config.action_mailer.default_url_options = { :host => 'heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'trackeria.com' }
+  ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => ENV['app15427778@heroku.com'],
+    :password       => ENV['2gob2gtt'],
+    :domain         => ENV['trackeria.com']
+  }
   # Code is not reloaded between requests
   config.cache_classes = true
 
