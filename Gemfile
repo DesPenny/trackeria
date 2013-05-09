@@ -66,6 +66,7 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'newrelic_rpm'
 gem 'rmagick'
 gem 'google_visualr'
 gem 'devise'
