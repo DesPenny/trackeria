@@ -21,6 +21,7 @@
 #
 
 class Domainurl < ActiveRecord::Base
+  include Keyword_Rankr
   belongs_to :user
   attr_accessible :category, :domainurl, :keyword, :user_id, :google_rank, :bing_rank, :yahoo_rank, :alexa_rank, :page_rank, :urlname, :googlesource
   has_many :histories, :dependent=>:destroy

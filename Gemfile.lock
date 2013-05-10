@@ -126,7 +126,6 @@ GEM
     json (1.7.7)
     jsonpath (0.5.2)
       multi_json
-    keyword_rankr (0.0.3)
     launchy (2.2.0)
       addressable (~> 2.3)
     letter_opener (1.1.0)
@@ -260,9 +259,9 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   json
-  keyword_rankr
   letter_opener
   newrelic_rpm
+  nokogiri
   pg
   rails
   rmagick

@@ -126,7 +126,7 @@ class DomainurlsController < ApplicationController
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
     uid=current_user.id
-    if @domainurl.first.refreshed==nil || Time.now.utc>(@domainurl.first.refreshed)+1800
+    if @domainurl.first.refreshed==nil || Time.now.utc>(@domainurl.first.refreshed)+1
     # if Time.now.utc>(@domainurl.first.updated_at+1800) ||
     #  @domainurl.first.created_at==(@domainurl.first.updated_at) || 
     #  @domainurl.first.created_at==(@domainurl.first.updated_at+1) || 
@@ -135,7 +135,7 @@ class DomainurlsController < ApplicationController
         f.refreshed=Time.now.utc
         f.save
       end
-        Domainurl.delay.domainupdatenow(uid)
+        Domainurl.delay.domainupdatenow(uid)#add delay method here
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 
@@ -149,7 +149,7 @@ class DomainurlsController < ApplicationController
   
 
   private
-    @urlcount    
+        
 
     def sort_column
       Domainurl.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
