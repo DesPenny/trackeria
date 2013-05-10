@@ -10,7 +10,7 @@ class Array
 end
 
 class Ranking
-  @@default_options = { :limit => 200, :res_per_page => 10, :supported_engines => [:bing, :bingIND, :bingCA ,:bingUK,:bingFR , :google, :googleUS, :yahoo, :googleUSA, :googleIND, :googleFR, :googleCA, :yahooIND, :yahooFR, :yahooCA  ] } #careful, res_per_page doesn't work with more than 10 for all search engines!
+  @@default_options = { :limit => 200, :res_per_page => 100, :supported_engines => [:bing, :bingIND, :bingCA ,:bingUK,:bingFR , :google, :googleUS, :yahoo, :googleUSA, :googleIND, :googleFR, :googleCA, :yahooIND, :yahooFR, :yahooCA  ] } #careful, res_per_page doesn't work with more than 10 for all search engines!
 
   attr_reader :options
 
