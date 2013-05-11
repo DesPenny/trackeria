@@ -77,8 +77,6 @@
 </nav>
 </div>
 
-
-<%= yield %>
 <% if notice!=nil %>
         <p class="notice"><center><%= notice %></center>
         <br />
@@ -87,6 +85,9 @@
         <p class="alert"><center><%= alert %></center>
         <br />
 <% end %>
+
+<%= yield %>
+
 <br />
 <br />
 <br />
@@ -122,10 +123,10 @@
 
 <%= javascript_include_tag "application" %>
 
-
 </body>
 <footer>
-  <center><a href="mailto:info@trackeria.com">Contact Us</a> | <a href="#" data-reveal-id="privacyModal">Privacy</a> | <a href="#" data-reveal-id="termsModal">Terms of Service</a> </center>
+  
+<center><a href="mailto:info@trackeria.com">Contact Us</a> | <a href="#" data-reveal-id="privacyModal">Privacy</a> | <a href="#" data-reveal-id="termsModal">Terms of Service</a> </center>
 
   <div id="privacyModal" class="reveal-modal medium">
 
