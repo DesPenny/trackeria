@@ -86,14 +86,15 @@ class Finder
     # when :yahoo
     #   ["http://search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
     # end
-    when :bing
-      ["http://www.bing.com/search?q=#{options[:keyword]}", '#wg0 > li', 'cite']
+    
     when :google
       ["http://www.google.co.uk/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleUS
       ["http://www.google.com/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
-    when :yahoo
-      ["http://search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
+    when :googleDE
+      ["http://www.google.de/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
+    when :googleAU
+      ["http://www.google.com.au/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleIND
       ["http://www.google.co.in/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleFR
@@ -102,6 +103,8 @@ class Finder
       ["http://www.google.com/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleCA
       ["http://www.google.ca/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
+    when :bing
+      ["http://www.bing.com/search?q=#{options[:keyword]}", '#wg0 > li', 'cite']  
     when :bingIND
       ["http://www.bing.com/search?q=#{options[:keyword]}&cc=in", '#wg0 > li', 'cite'] 
     when :bingCA
@@ -110,15 +113,26 @@ class Finder
       ["http://www.bing.com/search?q=#{options[:keyword]}&cc=fr", '#wg0 > li', 'cite']
     when :bingUK
       ["http://www.bing.com/search?q=#{options[:keyword]}&cc=uk", '#wg0 > li', 'cite']
+    when :bingDE
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=de", '#wg0 > li', 'cite']
+    when :bingAU
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=au", '#wg0 > li', 'cite'] 
     when :yahooIND
       ["http://in.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :yahooFR
       ["http://fr.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :yahooCA
       ["http://ca.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
+    when :yahooAU
+      ["http://au.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
+    when :yahooDE
+      ["http://de.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
+    when :yahooUK
+      ["http://uk.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']    
     when :yahoo
       ["http://search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     end
+
  
 
     count, rank = 0, nil

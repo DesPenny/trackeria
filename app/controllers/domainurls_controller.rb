@@ -126,7 +126,7 @@ class DomainurlsController < ApplicationController
   def domainupdate
     @domainurl = Domainurl.find_all_by_user_id(current_user.id)
     uid=current_user.id
-    if @domainurl.first.refreshed==nil || Time.now.utc>(@domainurl.first.refreshed)+90
+    if @domainurl.first.refreshed==nil || Time.now.utc>(@domainurl.first.refreshed)+900
     # if Time.now.utc>(@domainurl.first.updated_at+1800) ||
     #  @domainurl.first.created_at==(@domainurl.first.updated_at) || 
     #  @domainurl.first.created_at==(@domainurl.first.updated_at+1) || 

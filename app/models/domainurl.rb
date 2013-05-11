@@ -65,7 +65,7 @@ class Domainurl < ActiveRecord::Base
         end
         if f.googlesource=="UK"
           sleep 1
-          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooUK
           sleep 1
           f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bingUK
           sleep 1
@@ -76,7 +76,7 @@ class Domainurl < ActiveRecord::Base
           f.refreshedactual=Time.now.utc
           f.save 
         end
-        if f.googlesource=="Canada"
+        if f.googlesource=="CA"
           sleep 1
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooCA
           sleep 1
@@ -89,7 +89,7 @@ class Domainurl < ActiveRecord::Base
           f.refreshedactual=Time.now.utc
           f.save 
         end
-        if f.googlesource=="France"
+        if f.googlesource=="FR"
           sleep 1
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooFR
           sleep 1
@@ -99,6 +99,32 @@ class Domainurl < ActiveRecord::Base
           f.alexa_global=f.alexa_global[:alexa_global] 
           sleep 7 + rand(2)
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleFR
+          f.refreshedactual=Time.now.utc
+          f.save 
+        end
+        if f.googlesource=="AU"
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooAU
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bingAU
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 7 + rand(2)
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleAU
+          f.refreshedactual=Time.now.utc
+          f.save 
+        end
+        if f.googlesource=="DE"
+          sleep 1
+          f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooDE
+          sleep 1
+          f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bingDE
+          sleep 1
+          f.alexa_global=PageRankr.ranks("#{f.domainurl}", :alexa_global)
+          f.alexa_global=f.alexa_global[:alexa_global] 
+          sleep 7 + rand(2)
+          f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleDE
           f.refreshedactual=Time.now.utc
           f.save 
         end
