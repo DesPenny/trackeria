@@ -109,32 +109,51 @@
 
 
 <% else %>
-<div class="row">
-    <center>
-        <div class="small-8 small-offset-2 columns">
-<ul data-orbit data-options="timer_speed:11500; stack_on_small:true; bullets:false;">
-  <li>
-    <a href="/users/sign_up"><img src="assets/1.jpg" /></a>
-    <div class="orbit-caption">Track Search Engine Rankings</div>
-  </li>
-  <li>
-    <a href="/users/sign_up"><img src="assets/4.jpg" /></a>
-    <div class="orbit-caption">Chart Trends</div>
-  </li>
-  <li>
-    <a href="/users/sign_up"><img src="assets/3.jpg" /></a>
-    <div class="orbit-caption">Get Instant Updates</div>
-  </li>
-</ul>
-</div>
-</center>
-</div>
-<br />
+
+<div class="panel callout">
 <div class="row">
     
-
-<center><%= link_to "Get Started", new_user_registration_path, :class=>"button large success radius" %></center>
-
+    <div class="small-7 columns">
+        <br />
+    <a href="/users/sign_up"><img src="assets/5.jpg" /></a>
+    </div>
+    <div class="small-5 columns">
+        <center>
+            <br />
+        <h2>Track Search Engine Rankings.</h2><br /><br />
+        <h2>Chart Trends.</h2><br /><br />
+        <h2>Get Instant Updates.</h2><br /><br /><br />
+        <%= link_to "Get Started", new_user_registration_path, :class=>"button large success radius" %>
+        </center>
+    </div>
+</div>
+</div>
+<br /><br /><br /><br /><br />
+<div class="row">
+    <div class="small-6 columns">
+    <div class="panel">
+        <h5><strong>What is Trackeria?</strong></h5><br />
+        <ul>
+            <li>Trackeria is an easy to use Search Engine Keyword Rank Tracking Tool.</li>
+            <li>Keep track of all your websites and keyword rankings from Google, Bing, and Yahoo.</li>
+            <li>The only rank tracking tool that allows you to get updates on-demand with a "Refresh All" button.</li>
+            <li>Simple charts and data allow you to monitor trends over time.</li>
+            <li>Rankings are updated and saved automatically each day.</li>
+            
+        </ul>
+    </div>
+    </div>
+    <div class="small-6 columns">
+    <div class="panel">
+        <h5><strong>How Does It Work?</strong></h5><br />
+        <ul>
+            <li>Getting started is easy. Simply add a URL, Keyword, Country and (optional) Category to begin tracking.</li>
+            <li>Trackeria tracks the top 200 search results for a given URL & keyword.</li>
+            <li>Rankings are automatically updated daily. Plus get immediate rankings whenever you want.</li>
+            <li>Track from the USA, UK, Canada, or France. The Country selected for a URL/Keyword determines the country specific search engine used (ca.yahoo.com, google.fr, etc).</li>
+        </ul> 
+    </div>
+    </div>
 </div>
 
 <% end %>
