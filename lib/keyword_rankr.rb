@@ -53,38 +53,71 @@ class Finder
   def find(options) #keyword, url, limit, engine, res_per_page
     options[:keyword].gsub!(/\s/, '+')
     request_url, results_selector, cite_selector = case options[:engine].to_sym
+    # when :bing
+    #   ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&first=", '#wg0 > li', 'cite']
+    # when :google
+    #   ["http://www.google.co.uk/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+    # when :googleUS
+    #   ["http://www.google.com/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+    # when :yahoo
+    #   ["http://search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+    # when :googleIND
+    #   ["http://www.google.co.in/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+    # when :googleFR
+    #   ["http://www.google.fr/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+    # when :googleUSA
+    #   ["http://www.google.com/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+    # when :googleCA
+    #   ["http://www.google.ca/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&cc=ca&start=", '#ires > ol > li', 'cite']
+    # when :bingIND
+    #   ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=in&first=", '#wg0 > li', 'cite'] 
+    # when :bingCA
+    #   ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=ca&first=", '#wg0 > li', 'cite']
+    # when :bingFR
+    #   ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=fr&first=", '#wg0 > li', 'cite']
+    # when :bingUK
+    #   ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=uk&first=", '#wg0 > li', 'cite']
+    # when :yahooIND
+    #   ["http://in.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+    # when :yahooFR
+    #   ["http://fr.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+    # when :yahooCA
+    #   ["http://ca.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+    # when :yahoo
+    #   ["http://search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+    # end
     when :bing
-      ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&first=", '#wg0 > li', 'cite']
+      ["http://www.bing.com/search?q=#{options[:keyword]}", '#wg0 > li', 'cite']
     when :google
-      ["http://www.google.co.uk/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.co.uk/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleUS
-      ["http://www.google.com/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.com/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :yahoo
-      ["http://search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+      ["http://search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :googleIND
-      ["http://www.google.co.in/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.co.in/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleFR
-      ["http://www.google.fr/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.fr/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleUSA
-      ["http://www.google.com/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.com/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :googleCA
-      ["http://www.google.ca/search?q=#{options[:keyword]}&num=#{options[:res_per_page]}&cc=ca&start=", '#ires > ol > li', 'cite']
+      ["http://www.google.ca/search?q=#{options[:keyword]}", '#ires > ol > li', 'cite']
     when :bingIND
-      ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=in&first=", '#wg0 > li', 'cite'] 
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=in", '#wg0 > li', 'cite'] 
     when :bingCA
-      ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=ca&first=", '#wg0 > li', 'cite']
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=ca", '#wg0 > li', 'cite']
     when :bingFR
-      ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=fr&first=", '#wg0 > li', 'cite']
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=fr", '#wg0 > li', 'cite']
     when :bingUK
-      ["http://www.bing.com/search?q=#{options[:keyword]}&count=#{options[:res_per_page]}&cc=uk&first=", '#wg0 > li', 'cite']
+      ["http://www.bing.com/search?q=#{options[:keyword]}&cc=uk", '#wg0 > li', 'cite']
     when :yahooIND
-      ["http://in.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+      ["http://in.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :yahooFR
-      ["http://fr.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+      ["http://fr.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :yahooCA
-      ["http://ca.search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+      ["http://ca.search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     when :yahoo
-      ["http://search.yahoo.com/search?p=#{options[:keyword]}&n=#{options[:res_per_page]}&b=", '#web > ol > li', 'span']
+      ["http://search.yahoo.com/search?p=#{options[:keyword]}", '#web > ol > li', 'span']
     end
  
 
