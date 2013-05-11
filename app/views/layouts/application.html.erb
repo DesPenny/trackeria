@@ -77,6 +77,8 @@
 </nav>
 </div>
 
+
+<%= yield %>
 <% if notice!=nil %>
         <p class="notice"><center><%= notice %></center>
         <br />
@@ -85,8 +87,6 @@
         <p class="alert"><center><%= alert %></center>
         <br />
 <% end %>
-<%= yield %>
-
 <br />
 <br />
 <br />
