@@ -135,7 +135,7 @@ class DomainurlsController < ApplicationController
         f.refreshed=Time.now.utc
         f.save
       end
-        Domainurl.delay.domainupdatenow(uid)#add delay method here
+        Domainurl.delay(queue:"refresh").domainupdatenow(uid)#add delay method here
         flash[:notice] = 'Updating. Refresh your browser in a few minutes'
         redirect_to root_path 
     else 

@@ -34,5 +34,5 @@ class History < ActiveRecord::Base
     end
   end
 
-
+  
 end

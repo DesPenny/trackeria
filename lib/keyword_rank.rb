@@ -1,4 +1,4 @@
-module Keyword_Rankr
+module Keyword_Rank
   require 'rubygems'
   require 'nokogiri'
   require 'net/http'
@@ -10,7 +10,7 @@ class Array
 end
 
 class Ranking
-  @@default_options = { :limit => 200, :res_per_page => 10, :supported_engines => [:bing, :bingIND, :bingCA ,:bingUK,:bingFR , :google, :googleUS, :yahoo, :googleUSA, :googleIND, :googleFR, :googleCA, :yahooIND, :yahooFR, :yahooCA  ] } #careful, res_per_page doesn't work with more than 10 for all search engines!
+  @@default_options = { :limit => 200, :res_per_page => 10, :supported_engines => [:bing, :bingIND, :bingCA ,:bingUK,:bingFR, :bingAU, :bingDE, :google, :googleUS, :googleUSA, :googleIND, :googleFR, :googleCA, :googleDE, :googleAU, :yahoo, :yahooUK, :yahooIND, :yahooFR, :yahooCA, :yahooAU, :yahooDE  ] } #careful, res_per_page doesn't work with more than 10 for all search engines!
 
   attr_reader :options
 
