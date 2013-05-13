@@ -2,6 +2,7 @@ desc "This task is called by the Heroku scheduler add-on"
 require 'keyword_rank'
 require 'workless'
 require 'delayed_job_active_record'
+require 'daemons'
 include Keyword_Rank
 #include Domainurl
 #include History
