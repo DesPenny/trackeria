@@ -6,10 +6,10 @@ include Keyword_Rank
 #include Domainurl
 #include History
 task :update_history => :environment do
-  Domainurl.delay(queue: "update all", priority: 0).update_domainurl_all
+  Domainurl.update_domainurl_all
 end
 task :update_history_failed => :environment do
-	Domainurl.delay(queue: "update failed", priority: 2).update_domainurl_failed
+	Domainurl.delay.update_domainurl_failed
 end
 task :update_history_final => :environment do
 	Domainurl.delay(queue: "update final", priority:4).update_domainurl_final
