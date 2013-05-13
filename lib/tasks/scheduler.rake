@@ -13,6 +13,6 @@ task :update_history_failed => :environment do
 	Domainurl.delay.update_domainurl_failed
 end
 task :update_history_final => :environment do
-	Domainurl.delay(queue: "update final", priority:4).update_domainurl_final
+	Domainurl.delay.update_domainurl_final
 end
 
