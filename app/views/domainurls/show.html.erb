@@ -16,11 +16,21 @@
 </div>
 </div>
 <div class="row">
+
+<% if @history.count > 0 %>
+<%= render_chart(@chart, 'chart') %>
 <div id='chart'>
 <div class="small-4 columns">
-<%= render_chart(@chart, 'chart') %>
+    </div>
 </div>
+<% else %>
+<div class="small-4 small-offset-1 columns">
+    <br /><br />
+Not enough data to render chart.
+<br /><br />
 </div>
+<% end %>
+
 </div>
 
 <div class="row">

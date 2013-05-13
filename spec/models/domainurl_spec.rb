@@ -18,6 +18,7 @@
 #  googlesource    :string(255)
 #  refreshed       :datetime
 #  refreshedactual :datetime
+#  updatecount     :integer
 #
 
 require 'spec_helper'
