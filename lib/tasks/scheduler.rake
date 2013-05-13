@@ -7,7 +7,7 @@ include Keyword_Rank
 #include Domainurl
 #include History
 task :update_history => :environment do
-  Domainurl.update_domainurl_all
+  Domainurl.delay.update_domainurl_all
 end
 task :update_history_failed => :environment do
 	Domainurl.delay.update_domainurl_failed
