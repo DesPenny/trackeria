@@ -20,6 +20,18 @@ $em-base: 16px !default;
   @return $pxWidth / $em-base * 1em;
 }
 
+#bgimg
+{
+	position:absolute;
+	left:0;
+	top:60;
+	height:600;
+}
+header#homepage.homeslide-3 {
+    background-image: url("/assets/1.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+}
 //// Various global styles
 
 // $body-bg: #fff;
@@ -802,9 +814,9 @@ $em-base: 16px !default;
 
 //// Background and border styles
 
-// $panel-bg: darken(#fff, 5%);
+ $panel-bg: darken(#fff, 5%);
 // $panel-border-style: solid;
-// $panel-border-size: 1px;
+ $panel-border-size: 1px;
 
 //// Control how much we darken things on hover
 
