@@ -85,7 +85,7 @@
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
                 <div class="small-1 columns"><%= f.input :category, label: false %></div>
                 <div class="small-1 columns"><span class="prefix">Country</span></div>
-                <div class="small-1 columns"><%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "CA", "AU", "FR", "DE"], label: false, :selected=>["USA"] %></div>
+                <div class="small-1 columns"><%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "CA", "AU"], label: false, :selected=>["USA"] %></div>
                 <div class="small-2 columns"><div id="numero0"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div></div>
 </div>
 <div class="row">
@@ -163,7 +163,7 @@
             Trackeria tracks the top 200 search results for a given URL & keyword.<br /><br />
             Rankings are updated and saved automatically each day.<br /><br />
             Getting started is easy. Just add a URL, Keyword, Country and (optional) Category to begin tracking.<br /><br />
-            Track from the USA, UK, Canada, Australia, Germany, or France.
+            Track from the USA, UK, Canada, or Australia.
             <br /><br /><br />
         </font>
    
