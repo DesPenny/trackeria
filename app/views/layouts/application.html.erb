@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trackeria</title>
+  <title>Trackeria - Search Engine Rank Tracking</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "vendor/custom.modernizr" %>
   <script src='https://www.google.com/jsapi'></script>
@@ -19,6 +19,7 @@
   ga('send', 'pageview');
 
 </script>
+<meta name="description" content="Trackeria is a simple and accurate search engine rank tracking tool. It's the only tracking tool that allows you to get instant updates whenever you want. Getting started is easy. Sign up today and begin tracking your keyword rankings!">
 </head>
 <body>
 
@@ -87,6 +88,20 @@
 <% end %>
 
 <%= yield %>
+
+<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+<meta itemprop="ratingValue" content="5" />
+<meta itemprop="ratingCount" content="27" />
+</div>
+
+<div class="testimonials-item dev-testimonials-item" itemscope itemtype="http://schema.org/Review">
+<div class="testimonials-h">
+<span class="testimonials-stars"><i class="testimonials-starsbg" style="width:92.2%"></i></span>
+<b class="testimonials-name"></b>
+</div>
+<div class="testimonials-content">
+</div>
+</div>
 
 <br />
 <br />
