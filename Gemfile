@@ -66,6 +66,7 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'admin_data'
 gem 'nokogiri'
 gem 'newrelic_rpm'
 gem 'rmagick'
