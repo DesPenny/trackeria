@@ -3,6 +3,9 @@ require File.expand_path('../boot', __FILE__)
 require 'csv'
 require 'rails/all'
 require 'net/http'
+require 'nokogiri'
+require 'uri'
+require 'net/https'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

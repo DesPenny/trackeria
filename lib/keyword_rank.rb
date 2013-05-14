@@ -2,6 +2,8 @@ module Keyword_Rank
   require 'rubygems'
   require 'nokogiri'
   require 'net/http'
+  require 'net/https'
+  require 'uri'
 
 class Array
   def extract_options!
