@@ -200,7 +200,7 @@ class Domainurl < ActiveRecord::Base
 
   def Domainurl.update_domainurl_failed
     Domainurl.all.each do |f|
-      if f.updatecount!='1'
+      if f.updatecount!=1
           if f.googlesource=="USA"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
               f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bing
@@ -268,7 +268,7 @@ class Domainurl < ActiveRecord::Base
               f.save 
           end
         end
-      if f.google_rank != nil && f.updatecount=='1'
+      if f.google_rank != nil && f.updatecount==1
         f.updatecount=0
         f.save
         f.histories.create(  
@@ -286,7 +286,7 @@ class Domainurl < ActiveRecord::Base
 
   def Domainurl.update_domainurl_final
     Domainurl.all.each do |f|
-      if f.updatecount!='0'
+      if f.updatecount!=0
           if f.googlesource=="USA"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
               f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bing
@@ -354,7 +354,7 @@ class Domainurl < ActiveRecord::Base
               f.save 
           end
         end
-      if f.updatecount=='1'
+      if f.updatecount==1
         f.updatecount=0
         f.save
         f.histories.create(  
