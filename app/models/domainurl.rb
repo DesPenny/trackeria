@@ -182,9 +182,6 @@ class Domainurl < ActiveRecord::Base
           f.updatecount=1
           f.save 
         end
-    end
-
-    Domainurl.all.each do |f|
       if f.google_rank != nil
         f.updatecount=0
         f.save
@@ -271,8 +268,6 @@ class Domainurl < ActiveRecord::Base
               f.save 
           end
         end
-    end
-    Domainurl.all.each do |f|
       if f.google_rank != nil && f.updatecount=='1'
         f.updatecount=0
         f.save
@@ -359,8 +354,6 @@ class Domainurl < ActiveRecord::Base
               f.save 
           end
         end
-    end
-    Domainurl.all.each do |f|
       if f.updatecount=='1'
         f.updatecount=0
         f.save
