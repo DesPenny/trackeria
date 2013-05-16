@@ -51,6 +51,7 @@ class Domainurl < ActiveRecord::Base
 
   def Domainurl.domainupdatenow(uid)
       Domainurl.find_all_by_user_id(uid).each do |f|
+        begin
         if f.googlesource=="USA"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
           f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bing
@@ -111,11 +112,15 @@ class Domainurl < ActiveRecord::Base
           f.refreshedactual=Time.now.utc
           f.save 
         end
+      rescue
+        puts "error"
+      end
       end
   end
 
   def Domainurl.update_domainurl_all
     Domainurl.all.each do |f|
+      begin
         if f.googlesource=="USA"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
           f.bing_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_bing
@@ -195,11 +200,15 @@ class Domainurl < ActiveRecord::Base
               :yahoo_rank=>f.yahoo_rank,
               :alexa_global=>f.alexa_global)
       end
+    rescue
+      puts "error"
+    end
     end
   end
 
   def Domainurl.update_domainurl_failed
     Domainurl.all.each do |f|
+      begin
       if f.updatecount!=0
           if f.googlesource=="USA"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
@@ -281,11 +290,15 @@ class Domainurl < ActiveRecord::Base
               :yahoo_rank=>f.yahoo_rank,
               :alexa_global=>f.alexa_global)
       end
+    rescue
+      puts "error"
+    end
     end
   end
 
   def Domainurl.update_domainurl_final
     Domainurl.all.each do |f|
+      begin
       if f.updatecount!=0
           if f.googlesource=="USA"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahoo
@@ -367,6 +380,9 @@ class Domainurl < ActiveRecord::Base
               :yahoo_rank=>f.yahoo_rank,
               :alexa_global=>f.alexa_global)
       end
+    rescue
+      puts "error"
+    end
     end
   end
 end
