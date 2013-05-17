@@ -79,7 +79,7 @@
             <%= f.hidden_field :user_id, :value=>current_user.id %>
             
                 <div class="small-1 columns"><span class="prefix">URL</span></div>
-                <div class="small-2 columns"><%= f.input :domainurl, label: false %></div>
+                <div class="small-2 columns"><%= f.input :domainurl, label: false, as: :url %></div>
                 <div class="small-1 columns"><span class="prefix">Keyword</span></div>
                 <div class="small-1 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
