@@ -3,7 +3,7 @@ module Keyword_Rank
   require 'nokogiri'
   require 'net/http'
   require 'uri'
-
+  require 'open-uri'
 class Array
   def extract_options!
     last.is_a?(::Hash) ? pop : {}

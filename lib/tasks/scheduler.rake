@@ -3,6 +3,8 @@ require 'keyword_rank'
 require 'workless'
 require 'delayed_job_active_record'
 require 'daemons'
+require 'open-uri'
+require 'nokogiri'
 include Keyword_Rank
 #include Domainurl
 #include History
