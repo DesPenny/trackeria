@@ -6,7 +6,7 @@ require 'rails/all'
 require 'net/http'
 require 'nokogiri'
 require 'uri'
-
+require 'rubygems'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
