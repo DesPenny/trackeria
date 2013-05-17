@@ -130,7 +130,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleUS
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
         if f.googlesource=="UK"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooUK
@@ -141,7 +140,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_google
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
         if f.googlesource=="CA"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooCA
@@ -152,7 +150,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleCA
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
         if f.googlesource=="FR"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooFR
@@ -163,7 +160,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleFR
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
         if f.googlesource=="AU"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooAU
@@ -174,7 +170,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleAU
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
         if f.googlesource=="DE"
           f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooDE
@@ -185,7 +180,6 @@ class Domainurl < ActiveRecord::Base
           f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleDE
           f.refreshedactual=Time.now.utc
           f.updatecount=1
-          f.save 
         end
       if f.google_rank != nil
         f.updatecount=0
@@ -219,7 +213,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleUS
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+               
           end
           if f.googlesource=="UK"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooUK
@@ -230,7 +224,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_google
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+               
           end
           if f.googlesource=="CA"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooCA
@@ -241,7 +235,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleCA
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+              
           end
           if f.googlesource=="FR"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooFR
@@ -252,7 +246,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleFR
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+               
           end
           if f.googlesource=="AU"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooAU
@@ -263,7 +257,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleAU
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+              
           end
           if f.googlesource=="DE"
               f.yahoo_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_yahooDE
@@ -274,7 +268,7 @@ class Domainurl < ActiveRecord::Base
               f.google_rank=Ranking.new(:keyword => "#{f.keyword}", :url =>  "#{f.domainurl}", :limit => 200).from_googleDE
               f.refreshedactual=Time.now.utc
               f.updatecount=1
-              f.save 
+               
           end
         end
       if f.google_rank != nil && f.updatecount==1
