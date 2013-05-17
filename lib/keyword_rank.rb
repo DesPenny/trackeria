@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Keyword_Rank
   require 'rubygems'
   require 'nokogiri'

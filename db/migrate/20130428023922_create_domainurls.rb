@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDomainurls < ActiveRecord::Migration
   def change
     create_table :domainurls do |t|

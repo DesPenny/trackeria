@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # module Jobs
 #   module ScheduledJob
 #     def self.included(base)

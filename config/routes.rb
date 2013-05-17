@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Rankapp::Application.routes.draw do
 
   resources :histories

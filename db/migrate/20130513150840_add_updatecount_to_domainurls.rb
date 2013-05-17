@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddUpdatecountToDomainurls < ActiveRecord::Migration
   def change
     add_column :domainurls, :updatecount, :integer, :default=>1

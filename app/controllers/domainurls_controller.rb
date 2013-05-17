@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DomainurlsController < ApplicationController
   # GET /domainurls
   # GET /domainurls.json
