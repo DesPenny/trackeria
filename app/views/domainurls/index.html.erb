@@ -79,11 +79,12 @@
             <%= f.hidden_field :user_id, :value=>current_user.id %>
             
                 <div class="small-1 columns"><span class="prefix">URL</span></div>
-                <div class="small-2 columns"><%= f.input :domainurl, label: false, as: :url %></div>
+                <div class="small-2 columns">
+                    <%= f.input :domainurl, as: :url, label: false %></div>
                 <div class="small-1 columns"><span class="prefix">Keyword</span></div>
                 <div class="small-1 columns"><%= f.input :keyword, label: false %></div>
                 <div class="small-2 columns"><span class="prefix">Category (optional)</span></div>
-                <div class="small-1 columns"><%= f.input :category, label: false %></div>
+                <div class="small-1 columns"><%= f.input :category, label: false, required: false %></div>
                 <div class="small-1 columns"><span class="prefix">Country</span></div>
                 <div class="small-1 columns"><%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "CA", "AU", "DE", "FR"], label: false, :selected=>["USA"] %></div>
                 <div class="small-2 columns"><div id="numero0"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div></div>
@@ -91,10 +92,11 @@
 <div class="row">
     <div class="small-4 columns">
         <%= f.error :base %>
+        <% end %>
     </div> 
 </div>
 
-<% end %> 
+ 
 
 <% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
 <div class="row">
@@ -116,21 +118,21 @@
 
   
     <div class="small-7 columns">
-        <br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
     <a href="/users/sign_up"><img src="/assets/seo_keyword_tracker.png" /></a>
     </div>
     <div class="small-5 columns">
 
         <center>
-            <br />
-        <font color="white" size="6"><strong><br />Track Search Engine Rankings.<br /><br />
-        Chart Trends.<br /><br />
-        Get Instant Updates.<br /><br /></strong></font>
+            <br /><br /><br /><br /><br />
+        <font color="white" size="6"><strong><br />Track Search Engine Rankings.<br /><br /><br />
+        Chart Trends.<br /><br /><br />
+        Get Instant Updates.<br /><br /><br /></strong></font>
         <%= link_to "Get Started", new_user_registration_path, :class=>"button large success round" %>
         </center>
     </div>
 </div>
-<br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br />
 </header>
 
 <br /><br />
