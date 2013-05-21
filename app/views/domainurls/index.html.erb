@@ -28,12 +28,12 @@
             <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "-" %> (<%= f.googlesource %>)</div></td>
             <td><center><%= f.keyword rescue "-" %></center></td>
             <td><center><%= f.category rescue "-" %></center></td>
-            <td><center><% if f.google_rank==nil && f.refreshedactual==nil %>-
+            <td><center><% if f.google_rank==nil %>-
                         <% else %>
                         <%= f.google_rank rescue "-" %> 
                         <% end %>
                             
-                            <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)>0 %>
+                            <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)>0 && f.google_rank!=nil %>
                             <font color="green">(+<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
                             <% end %>
                             <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 %>
@@ -43,7 +43,7 @@
                             
                             <% end %>
                         </center></td>
-            <td><center><% if f.bing_rank==nil && f.refreshedactual==nil %>-
+            <td><center><% if f.bing_rank==nil  %>-
                         <% else %>
                         <%= f.bing_rank %>
                         <% end %>
@@ -57,8 +57,8 @@
                             <% if (History.find_by_domainurl_id(f).bing_rank.to_i==f.bing_rank.to_i) || f.bing_rank==nil %>
                             
                             <% end %>
-                        </center</td>
-            <td><center><% if f.yahoo_rank==nil && f.refreshedactual==nil %>-
+                        </center></td>
+            <td><center><% if f.yahoo_rank==nil  %>-
                         <% else %>
                         <%= f.yahoo_rank%>
                         <% end %>
@@ -72,7 +72,7 @@
                             
                             <% end %>
                         </center></td>
-            <td><center><% if f.alexa_global==nil && f.refreshedactual==nil %>-
+            <td><center><% if f.alexa_global==nil  %>-
                         <% else %>
                         <%= f.alexa_global %>
                         <% end %>
