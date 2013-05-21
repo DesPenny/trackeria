@@ -12,7 +12,7 @@ class DomainurlsController < ApplicationController
       @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/100"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
       @url=Domainurl.find_all_by_user_id(current_user.id)
-      @histories=History.find_all_by_domainurl_id(@url)
+      #@histories=@domainurls.to_a-History.find_by_domainurl_id(@domainurls).to_a
     end
     respond_to do |format|
       format.html # index.html.erb
