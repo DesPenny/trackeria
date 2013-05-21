@@ -39,7 +39,7 @@
                             <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 %>
                             <font color="red">(<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
                             <% end %>
-                            <% if (History.find_by_domainurl_id(f).google_rank.to_i==f.google_rank.to_i) %>
+                            <% if (History.find_by_domainurl_id(f).google_rank.to_i==f.google_rank.to_i) || f.google_rank==nil %>
                             
                             <% end %>
                         </center></td>
@@ -54,7 +54,7 @@
                             <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 %>
                             <font color="red">(<%= History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i  %>)</font>
                             <% end %>
-                            <% if (History.find_by_domainurl_id(f).bing_rank.to_i==f.bing_rank.to_i) %>
+                            <% if (History.find_by_domainurl_id(f).bing_rank.to_i==f.bing_rank.to_i) || f.bing_rank==nil %>
                             
                             <% end %>
                         </center</td>
@@ -68,7 +68,7 @@
                             <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 %>
                             <font color="red">(<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
                             <% end %>
-                            <% if (History.find_by_domainurl_id(f).yahoo_rank.to_i==f.yahoo_rank.to_i) %>
+                            <% if (History.find_by_domainurl_id(f).yahoo_rank.to_i==f.yahoo_rank.to_i) || f.yahoo_rank==nil %>
                             
                             <% end %>
                         </center></td>
@@ -82,7 +82,7 @@
                             <% if (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 %>
                             <font color="red">(<%= History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i  %>)</font>
                             <% end %>
-                            <% if (History.find_by_domainurl_id(f).alexa_global.to_i==f.alexa_global.to_i) %>
+                            <% if (History.find_by_domainurl_id(f).alexa_global.to_i==f.alexa_global.to_i) || f.alexa_global==nil %>
                             
                             <% end %>
                         </center></td>
