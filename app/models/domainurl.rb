@@ -39,8 +39,32 @@ class Domainurl < ActiveRecord::Base
   		end
 	end
 
+# <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)>0 && f.       yahoo_rank!=nil %>
+#                             <font color="green">(+<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.        yahoo_rank.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)<0 && f.       yahoo_rank!=nil%>
+#                             <font color="red">(<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.       yahoo_rank.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i==f.yahoo_rank.to_i) || f.        yahoo_rank==nil %>
+                                    
+#                                     <% end %>
 
-
+# <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i)>0 && f.     alexa_global!=nil%>
+#                             <font color="green">(+<%= History.find_by_domainurl_id(f).alexa_global.to_i-        f.alexa_global.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i)<0 && f.     alexa_global!=nil%>
+#                             <font color="red">(<%= History.find_by_domainurl_id(f).alexa_global.to_i-f.     alexa_global.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i==f.alexa_global.to_i) || f.      alexa_global==nil %>
+#<% end %>
+  # <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i)>0 && f.      bing_rank!=nil  %>
+  #                           <font color="green">(+<%= History.find_by_domainurl_id(f).bing_rank.to_i-f.     bing_rank.to_i  %>)</font>
+  #                                   <% end %>
+  #                           <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i)<0 && f.      bing_rank!=nil  %>
+  #                           <font color="red">(<%= History.find_by_domainurl_id(f).bing_rank.to_i-f.        bing_rank.to_i  %>)</font>
+  #                                   <% end %>
+  #                           <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i==f.bing_rank.to_i) || f.bing_rank==nil  %>
+  #                                   <% end %>
   def self.to_csv
     CSV.generate do |csv|
       csv<<column_names #be more specific here
