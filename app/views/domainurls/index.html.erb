@@ -1,120 +1,97 @@
 <% if user_signed_in? %>
-
     <% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
-<div class="row"><center>
-<div class="small-12 small-centered columns">
-<table>
-    <thead>
-        <tr>
+        <div class="row"><center>
+        <div class="small-12 small-centered columns">
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th><center><div id="numero2"><%= link_to sortable "domainurl", "URL" %></div></center></th>
+                    <th><center><%= link_to sortable "keyword"  %></center></th>
+                    <th><center><%= link_to sortable "category", "Category" %></center></th>
+                    <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
+                    <th><center><%= link_to sortable "bing_rank", "Bing" %></center></th>
+                    <th><center><%= link_to sortable "yahoo_rank", "Yahoo" %></center></th>
+                    <th><center><%= link_to sortable "alexa_rank", "Alexa" %></center></th>
+                    <th><center><%= link_to sortable "updated_at", "Updated" %></center></th>
+                    <th><center></center></th>
+                </tr>
+            </thead>
+            <tbody>
             
-            <th><center><div id="numero2"><%= link_to sortable "domainurl", "URL" %></div></center></th>
-            <th><center><%= link_to sortable "keyword"  %></center></th>
-            <th><center><%= link_to sortable "category", "Category" %></center></th>
-            <th><center><%= link_to sortable "google_rank", "Google" %></center></th>
-            <th><center><%= link_to sortable "bing_rank", "Bing" %></center></th>
-            <th><center><%= link_to sortable "yahoo_rank", "Yahoo" %></center></th>
-            <th><center><%= link_to sortable "alexa_rank", "Alexa" %></center></th>
-            <th><center><%= link_to sortable "updated_at", "Updated" %></center></th>
-            <th><center></center></th>
-        </tr>
-    </thead>
-    <tbody>
-    
-    
-
-    <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
-        <tr>
             
-            <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "-" %> (<%= f.googlesource %>)</div></td>
-            <td><center><%= f.keyword rescue "-" %></center></td>
-            <td><center><%= f.category rescue "-" %></center></td>
-            <td><center><% if f.google_rank==nil %>-
-                        <% else %>
-                        <%= f.google_rank rescue "-" %> 
-                        <% end %>
-                           
-                            <% if (History.find_by_domainurl_id(f).google_rank!=nil && (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)>0 && f.google_rank!=nil %>
+        
+            <% @domainurls.find_all_by_user_id(current_user.id).each do |f| %>   
+                <tr>
+                    
+                <td><div id="numero4"><%= link_to f.domainurl, domainurl_path(f.id) rescue "-" %> (<%= f.       googlesource %>)</div></td>
+                    <td><center><%= f.keyword rescue "-" %></center></td>
+                    <td><center><%= f.category rescue "-" %></center></td>
+                    <td><center><% if f.google_rank==nil %>-
+                                <% else %>
+                                <%= f.google_rank rescue "-" %> 
+                                <% end %>
+                                   
+                            <% if (History.find_by_domainurl_id(f).google_rank!=nil && History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i>0 && f.google_rank!=nil) rescue %>
                             <font color="green">(+<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).google_rank!=nil && (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i)<0 && f.google_rank!=nil%>
+                                    <% end %>
+                            <% if (History.find_by_domainurl_id(f).google_rank!=nil && History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i<0 && f.google_rank!=nil) rescue %>
                             <font color="red">(<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).google_rank!=nil && (History.find_by_domainurl_id(f).google_rank.to_i==f.google_rank.to_i) || f.google_rank==nil %>
-                           <% end %> 
+                                    <% end %>
+                            <% if (History.find_by_domainurl_id(f).google_rank==nil || History.find_by_domainurl_id(f).google_rank.to_i==f.google_rank.to_i || f.google_rank==nil) rescue %>
+                                <% end %> 
+                                    
+                                </center></td>
+                    <td><center><% if f.bing_rank==nil  %>-
+                                <% else %>
+                                <%= f.bing_rank %>
+                                <% end %>
+                                    
+                          
+                                </center></td>
+                    <td><center><% if f.yahoo_rank==nil  %>-
+                                <% else %>
+                                <%= f.yahoo_rank%>
+                                <% end %>
+                                   
                             
-                        </center></td>
-            <td><center><% if f.bing_rank==nil  %>-
+                                </center></td>
+                    <td><center><% if f.alexa_global==nil  %>-
+                                <% else %>
+                                <%= f.alexa_global %>
+                                <% end %>
+                                   
+                            
+                                   
+                                    
+                                </center></td>
+                    <td><center><% if f.refreshedactual==nil %>
+                        awaiting update
                         <% else %>
-                        <%= f.bing_rank %>
-                        <% end %>
-                            
-                            <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i)>0 && f.bing_rank!=nil %>
-                            <font color="green">(+<%= History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i)<0 && f.bing_rank!=nil %>
-                            <font color="red">(<%= History.find_by_domainurl_id(f).bing_rank.to_i-f.bing_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).bing_rank!=nil && (History.find_by_domainurl_id(f).bing_rank.to_i==f.bing_rank.to_i) || f.bing_rank==nil %>
-                            
-                            <% end %>
-                        </center></td>
-            <td><center><% if f.yahoo_rank==nil  %>-
-                        <% else %>
-                        <%= f.yahoo_rank%>
-                        <% end %>
-                           
-                            <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)>0 && f.yahoo_rank!=nil%>
-                            <font color="green">(+<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)<0 && f.yahoo_rank!=nil%>
-                            <font color="red">(<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i==f.yahoo_rank.to_i) || f.yahoo_rank==nil %>
-                            
-                            <% end %>
-                        </center></td>
-            <td><center><% if f.alexa_global==nil  %>-
-                        <% else %>
-                        <%= f.alexa_global %>
-                        <% end %>
-                           
-                            <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i)>0 && f.alexa_global!=nil%>
-                            <font color="green">(+<%= History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i)<0 && f.alexa_global!=nil%>
-                            <font color="red">(<%= History.find_by_domainurl_id(f).alexa_global.to_i-f.alexa_global.to_i  %>)</font>
-                            <% end %>
-                            <% if (History.find_by_domainurl_id(f).alexa_global!=nil && (History.find_by_domainurl_id(f).alexa_global.to_i==f.alexa_global.to_i) || f.alexa_global==nil %>
-                           
-                            <% end %>
-                        </center></td>
-            <td><center><% if f.refreshedactual==nil %>
-                awaiting update
-                <% else %>
-                <%= time_ago_in_words(f.refreshedactual) rescue "-" %>
-                <% end %></center></td>
-            <td><center><ul class="button-group radius">
-                <%= link_to "Edit", edit_domainurl_path(f),
-                                                :class=>"tiny button secondary"%>
-                <%= link_to "Delete", f,    :method=>:delete,
-                                                :confirm=> "Permanently delete #{f.domainurl}?",
-                                                :class=>"tiny button alert"%>
-            </ul>
-            </center>
-            </td>
+                        <%= time_ago_in_words(f.refreshedactual) rescue "-" %>
+                        <% end %></center></td>
+                    <td><center><ul class="button-group radius">
+                        <%= link_to "Edit", edit_domainurl_path(f),
+                                                        :class=>"tiny button secondary"%>
+                        <%= link_to "Delete", f,    :method=>:delete,
+                                                        :confirm=> "Permanently delete #{f.domainurl}?",
+                                                        :class=>"tiny button alert"%>
+                    </ul>
+                    </center>
+                    </td>
+        
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+    </center>
+    </div>
+    <p />
 
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-</div>
-</center>
-</div>
-<p />
-
-<div class="row">
+    <div class="row">
     <%= will_paginate @domainurls.find_all_by_user_id(current_user.id) %>
-</div>
+    </div>
 <% end %>
 <div class="row collapse">
    
@@ -132,90 +109,81 @@
                 <div class="small-1 columns"><span class="prefix">Country</span></div>
                 <div class="small-1 columns"><%= f.input :googlesource, priority: [ "USA" ], collection: ["USA", "UK", "CA", "AU", "DE", "FR"], label: false, :selected=>["USA"] %></div>
                 <div class="small-2 columns"><div id="numero0"><%= f.button :submit, 'Add URL & Keyword', :class=>"button success tiny radius" %></div></div>
-</div>
-<div class="row">
-    <div class="small-4 columns">
-        <%= f.error :base %>
-        <% end %>
-    </div> 
-</div>
+            </div>
+            <div class="row">
+            <div class="small-4 columns">
+            <%= f.error :base %>
+            <% end %>
+            </div></div>
 
  
 
-<% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
-<div class="row">
-    <%= link_to "Export History to CSV", domainurls_path(format: "csv") %>
-    <center>
+    <% if @domainurls.find_all_by_user_id(current_user.id).count>0 %>
+        <div class="row">
+        <%= link_to "Export History to CSV", domainurls_path(format: "csv") %>
+        <center>
         <br />
         <br />
-<div id="numero3"><%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></div></center>
+        <div id="numero3"><%= button_to "Refresh All", refresh_path, :method=>:put, :class=>"button radius" %></    div></center>
     
-</div>
-<% end %>
-
-
+        </div>
+    <% end %>
 <% else %>
 
-<header id="homepage" class="homeslide-3"> 
-
-<div class="row">
-
-  
-    <div class="small-7 columns">
-        <br /><br /><br /><br /><br /><br /><br /><br />
-    <a href="/users/sign_up"><img src="/assets/seo_keyword_tracker.png" /></a>
-    </div>
-    <div class="small-5 columns">
-
-        <center>
-            <br /><br /><br /><br /><br />
-        <font color="white" size="6"><strong><br />Track Search Engine Rankings.<br /><br /><br />
-        Chart Trends.<br /><br /><br />
-        Get Instant Updates.<br /><br /><br /></strong></font>
-        <%= link_to "Get Started", new_user_registration_path, :class=>"button large success round" %>
-        </center>
-    </div>
-</div>
-<br /><br /><br /><br /><br /><br /><br /><br />
-</header>
-
-<br /><br />
-<div class="row">
-    <div class="small-6 columns">
+    <header id="homepage" class="homeslide-3"> 
     
+    <div class="row">
+    
+      
+        <div class="small-7 columns">
+            <br /><br /><br /><br /><br /><br /><br /><br />
+        <a href="/users/sign_up"><img src="/assets/seo_keyword_tracker.png" /></a>
+        </div>
+        <div class="small-5 columns">
+    
+            <center>
+                <br /><br /><br /><br /><br />
+            <font color="white" size="6"><strong><br />Track Search Engine Rankings.<br /><br /><br />
+            Chart Trends.<br /><br /><br />
+            Get Instant Updates.<br /><br /><br /></strong></font>
+            <%= link_to "Get Started", new_user_registration_path, :class=>"button large success round" %>
+            </center>
+        </div>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br />
+    </header>
+    
+    <br /><br />
+    <div class="row">
+        <div class="small-6 columns">
+         
+            <h5><strong>What is Trackeria?</strong></h5><br />
+            <font color="#5c5c5c">
+                Trackeria is a simple and accurate search engine rank tracking tool.<br /><br />
+            Keep track of all your websites and keyword rankings for Google, Bing, and Yahoo. <br /><br     />
+                Charts and historical data allow you to monitor trends over time.<br /><br />
+                
+            </font>
+            <br />
+            <h5><strong>Instant Updates</strong></h5><br />
+            <font color="#5c5c5c">
+                The only rank tracking tool that allows you to get updates on-demand.
+            </font>
         
-        <h5><strong>What is Trackeria?</strong></h5><br />
-        <font color="#5c5c5c">
-            Trackeria is a simple and accurate search engine rank tracking tool.<br /><br />
-            Keep track of all your websites and keyword rankings for Google, Bing, and Yahoo. <br /><br />
-            Charts and historical data allow you to monitor trends over time.<br /><br />
+        </div>
+        <div class="small-6 columns">
             
-        </font>
-        <br />
-        <h5><strong>Instant Updates</strong></h5><br />
-        <font color="#5c5c5c">
-            The only rank tracking tool that allows you to get updates on-demand.
-        </font>
-        
-
-    
+            <h5><strong>How Does It Work?</strong></h5><br />
+            <font color="#5c5c5c">
+                
+                Trackeria tracks the top 200 search results for a given URL & keyword.<br /><br />
+                Rankings are updated and saved automatically each day.<br /><br />
+            Getting started is easy. Just add a URL, Keyword, Country and (optional) Category to begin  tracking.<br /><br />
+                Track from the USA, UK, Canada, or Australia.
+                <br /><br /><br />
+            </font>
+        </div>
     </div>
-    <div class="small-6 columns">
-    
-        
-        <h5><strong>How Does It Work?</strong></h5><br />
-        <font color="#5c5c5c">
-            
-            Trackeria tracks the top 200 search results for a given URL & keyword.<br /><br />
-            Rankings are updated and saved automatically each day.<br /><br />
-            Getting started is easy. Just add a URL, Keyword, Country and (optional) Category to begin tracking.<br /><br />
-            Track from the USA, UK, Canada, or Australia.
-            <br /><br /><br />
-        </font>
-   
-    </div>
-</div>
-
 <% end %>
 
 
