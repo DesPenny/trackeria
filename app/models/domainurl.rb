@@ -38,9 +38,16 @@ class Domainurl < ActiveRecord::Base
   			scoped
   		end
 	end
-
-# <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)>0 && f.yahoo_rank!=nil %>
-# <font color="green">(+<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
+# <% if History.find_by_domainurl_id(f).google_rank!=nil && (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i>0) && f.google_rank!=nil %>
+#                             <font color="green">(+<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if History.find_by_domainurl_id(f).google_rank!=nil && (History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i<0) && f.google_rank!=nil  %>
+#                             <font color="red">(<%= History.find_by_domainurl_id(f).google_rank.to_i-f.google_rank.to_i  %>)</font>
+#                                     <% end %>
+#                             <% if History.find_by_domainurl_id(f).google_rank==nil || History.find_by_domainurl_id(f).google_rank.to_i==f.google_rank.to_i || f.google_rank==nil %>
+#                                 <% end %> 
+# # <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)>0 && f.yahoo_rank!=nil %>
+# # <font color="green">(+<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
 #  <% end %>
 #   <% if (History.find_by_domainurl_id(f).yahoo_rank!=nil && (History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i)<0 && f.yahoo_rank!=nil%>
 #   <font color="red">(<%= History.find_by_domainurl_id(f).yahoo_rank.to_i-f.yahoo_rank.to_i  %>)</font>
