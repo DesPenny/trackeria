@@ -1,9 +1,29 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
-#gem 'rails', '3.0.3'
+
 gem 'rails'
-#gem 'heroku'
 gem 'puma'
+gem 'admin_data'
+gem 'nokogiri'
+gem 'newrelic_rpm'
+gem 'rmagick'
+gem 'google_visualr'
+gem 'devise'
+gem 'PageRankr'
+gem 'will_paginate'
+gem 'faker'
+gem 'simple_form'
+gem 'json'
+gem 'jquery-rails'
+gem 'daemons'
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
+gem 'dalli'
+gem 'workless'
+gem 'cancan'
+gem 'exception_notification'
+gem 'jbuilder'
+gem 'foreman'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -66,39 +86,4 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'admin_data'
-gem 'nokogiri'
-gem 'newrelic_rpm'
-gem 'rmagick'
-gem 'google_visualr'
-gem 'devise'
-gem 'PageRankr'
-gem 'will_paginate'
-gem 'faker'
-gem 'simple_form'
-gem 'json'
-gem 'jquery-rails'
-gem 'daemons'
-gem 'delayed_job_active_record'
-#gem 'whois'
-gem 'delayed_job_web'
-gem 'dalli'
-gem 'workless'
-gem 'cancan'
-gem 'exception_notification'
-gem 'jbuilder'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
