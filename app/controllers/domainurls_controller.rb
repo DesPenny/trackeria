@@ -9,7 +9,7 @@ class DomainurlsController < ApplicationController
   def index
     if signed_in?
       @domainurls =Domainurl.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
-      @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/100"
+      @domaincount="#{Domainurl.find_all_by_user_id(current_user.id).count}/300"
       @domaincount_for_page=Domainurl.find_all_by_user_id(current_user.id).count
       @url=Domainurl.find_all_by_user_id(current_user.id)
       #@histories=@domainurls.to_a-History.find_by_domainurl_id(@domainurls).to_a
@@ -73,7 +73,7 @@ class DomainurlsController < ApplicationController
   # POST /domainurls.json
   def create
     @domainurl = Domainurl.new(params[:domainurl])
-    if Domainurl.find_all_by_user_id(current_user.id).count<100
+    if Domainurl.find_all_by_user_id(current_user.id).count<300
       respond_to do |format|
         if @domainurl.save
           format.html { redirect_to root_path, notice: 'URL was successfully created.' }
