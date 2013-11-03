@@ -1,4 +1,3 @@
-
 // Foundation Variables
 //
 //// The default font-size is set to 100% of the browser style sheet (usually 16px)
@@ -33,6 +32,17 @@ header#homepage.homeslide-3 {
     background-repeat: no-repeat;
 }
 //// Various global styles
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45388303-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 // $body-bg: #fff;
 // $body-font-color: #222;
