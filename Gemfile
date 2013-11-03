@@ -23,7 +23,7 @@ gem 'cancan'
 gem 'exception_notification'
 gem 'jbuilder'
 gem 'foreman'
-
+gem 'memcachier'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #group :development do
